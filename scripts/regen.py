@@ -40,9 +40,17 @@ def main():
             if not entry:
                 continue
             entry = dict(entry)
-            src = {"source": "github", "repo": f"chrischall/{repo}"}
-            if rel != ".":
-                src["path"] = rel
+            if rel == ".":
+                src = {"source": "github", "repo": f"chrischall/{repo}"}
+            else:
+                # Monorepo subpackage: `github` sources have no `path` field
+                # (Claude Code silently ignores it and looks at the repo root),
+                # so subdirectory plugins must use the `git-subdir` source type.
+                src = {
+                    "source": "git-subdir",
+                    "url": f"https://github.com/chrischall/{repo}.git",
+                    "path": rel,
+                }
             entry["source"] = src
             base = f"https://github.com/chrischall/{repo}"
             entry.setdefault("homepage", base if rel == "." else f"{base}/tree/main/{rel}")
@@ -72,7 +80,9 @@ def main():
     print(f"Wrote {len(plugins)} plugins to {os.path.normpath(OUT)}")
     for p in plugins:
         s = p["source"]
-        loc = s["repo"] + ("/" + s["path"] if "path" in s else "")
+        loc = s.get("repo") or s.get("url", "")
+        if "path" in s:
+            loc += "/" + s["path"]
         print(f"  - {p['name']:24} {loc}")
 
 

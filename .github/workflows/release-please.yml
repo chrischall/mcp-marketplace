@@ -1,0 +1,48 @@
+name: release-please
+
+# Canonical release-please workflow (catalog variant — no publish job).
+#
+# On every push to main, googleapis/release-please-action scans
+# Conventional-Commit messages since the last release tag and:
+#
+#   - If new fix:/feat:/etc. commits are present, opens or updates a
+#     "release PR" that bumps `metadata.version` in
+#     .claude-plugin/marketplace.json (see release-please-config.json),
+#     bumps .release-please-manifest.json, and updates CHANGELOG.md.
+#   - When that release PR merges, the action creates a `v<VERSION>` tag
+#     and a GitHub Release populated from the CHANGELOG section.
+#
+# The release PR is left open as a human review gate. Merge it (via the UI,
+# or by adding `ready-to-merge` so auto-merge.yml arms it) when ready.
+#
+# Unlike the MCP-server repos there is nothing to publish to npm/MCP
+# registries — the plugins are referenced from their own source repos — so
+# the tag + GitHub Release is the whole release.
+#
+# RELEASE_PAT (not GITHUB_TOKEN) is used so the release PR's `opened`
+# event triggers downstream workflows (CI, pr-auto-review.yml). GitHub
+# suppresses workflow runs for events triggered by GITHUB_TOKEN.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-please-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5
+        id: release
+        with:
+          token: ${{ secrets.RELEASE_PAT }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

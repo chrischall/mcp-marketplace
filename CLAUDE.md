@@ -15,9 +15,13 @@ referenced by its own GitHub source repo. It contains no application code.
 - **Formatting is canonical** `json.dumps(..., indent=2)` + trailing newline.
   CI fails if `marketplace.json` doesn't match that exact formatting.
 - **Plugin `name`s must be unique** across the catalog.
-- Every plugin entry must have a `name`, a `description`, and a
-  `source` of the form `{ "source": "github", "repo": "chrischall/<repo>" }`
-  (optionally with `"path": "<subdir>"` for monorepos).
+- Every plugin entry must have a `name`, a `description`, and a `source`. A
+  root-level plugin uses
+  `{ "source": "github", "repo": "chrischall/<repo>" }`. A monorepo subpackage
+  uses `{ "source": "git-subdir", "url": "https://github.com/chrischall/<repo>.git", "path": "<subdir>" }`
+  — the `github` source type has **no** `path` field (Claude Code silently
+  ignores it and looks at the repo root), so subdirectory plugins must use
+  `git-subdir` or they won't load.
 - **`metadata.version`** is the catalog's own version and is bumped by
   release-please (see below). Per-plugin `version` fields mirror their upstream
   source repos and are carried over by `regen.py` — do not bump them here.

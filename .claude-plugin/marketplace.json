@@ -258,8 +258,8 @@
       "name": "gogcli-mcp",
       "displayName": "gogcli",
       "source": {
-        "source": "github",
-        "repo": "chrischall/gogcli-mcp",
+        "source": "git-subdir",
+        "url": "https://github.com/chrischall/gogcli-mcp.git",
         "path": "packages/gogcli-mcp"
       },
       "description": "Google Sheets (and more) for Claude via gogcli \u2014 read, write, and manage spreadsheets",
@@ -286,8 +286,8 @@
       "name": "gogcli-mcp-classroom",
       "displayName": "gogcli (Classroom)",
       "source": {
-        "source": "github",
-        "repo": "chrischall/gogcli-mcp",
+        "source": "git-subdir",
+        "url": "https://github.com/chrischall/gogcli-mcp.git",
         "path": "packages/gogcli-mcp-classroom"
       },
       "description": "Extended Google Classroom for Claude via gogcli \u2014 auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)",
@@ -316,8 +316,8 @@
       "name": "gogcli-mcp-docs",
       "displayName": "gogcli (Docs)",
       "source": {
-        "source": "github",
-        "repo": "chrischall/gogcli-mcp",
+        "source": "git-subdir",
+        "url": "https://github.com/chrischall/gogcli-mcp.git",
         "path": "packages/gogcli-mcp-docs"
       },
       "description": "Extended Google Docs for Claude via gogcli \u2014 auth + full Docs and comments support",
@@ -343,8 +343,8 @@
       "name": "gogcli-mcp-drive",
       "displayName": "gogcli (Drive)",
       "source": {
-        "source": "github",
-        "repo": "chrischall/gogcli-mcp",
+        "source": "git-subdir",
+        "url": "https://github.com/chrischall/gogcli-mcp.git",
         "path": "packages/gogcli-mcp-drive"
       },
       "description": "Extended Google Drive for Claude via gogcli \u2014 auth + full Drive support (upload, download, permissions, comments, shared drives)",
@@ -372,8 +372,8 @@
       "name": "gogcli-mcp-sheets",
       "displayName": "gogcli (Sheets)",
       "source": {
-        "source": "github",
-        "repo": "chrischall/gogcli-mcp",
+        "source": "git-subdir",
+        "url": "https://github.com/chrischall/gogcli-mcp.git",
         "path": "packages/gogcli-mcp-sheets"
       },
       "description": "Extended Google Sheets for Claude via gogcli \u2014 auth + full Sheets support",
@@ -400,8 +400,8 @@
       "name": "gogcli-mcp-slides",
       "displayName": "gogcli (Slides)",
       "source": {
-        "source": "github",
-        "repo": "chrischall/gogcli-mcp",
+        "source": "git-subdir",
+        "url": "https://github.com/chrischall/gogcli-mcp.git",
         "path": "packages/gogcli-mcp-slides"
       },
       "description": "Extended Google Slides for Claude via gogcli \u2014 auth + full Slides support (create, edit, export, templates, markdown)",

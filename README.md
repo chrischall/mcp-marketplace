@@ -1,20 +1,18 @@
 # chrischall MCP marketplace
 
-A single Claude Code marketplace bundling Chris Hall's MCP servers. Each plugin lives in its own repo; this catalog just references them.
+A single Claude Code marketplace bundling Chris Hall's MCP servers. Each plugin lives in its own repo (or monorepo subpackage); this catalog just references them.
 
 ## Install
 
 ```bash
-# Add the marketplace once
 claude plugin marketplace add chrischall/mcp-marketplace
 
-# Then browse / install any server
 /plugin   # interactive picker
 # or e.g.
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (28)
+## Servers (34)
 
 ### education
 
@@ -43,6 +41,12 @@ claude plugin install zillow-mcp@chrischall
 - **[Compass](https://github.com/chrischall/compass-mcp)** (`compass-mcp`) — MCP server for Compass — search listings, get property details, market reports, saved homes
 - **[Etix](https://github.com/chrischall/etix-mcp)** (`etix-mcp`) — MCP server for Etix — search events, venues & performers and fetch event details
 - **[Evite](https://github.com/chrischall/evite-mcp)** (`evite`) — Evite tools for Claude — list events, guest lists & RSVPs, RSVP, message guests, and create/edit events via MCP
+- **[gogcli](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp)** (`gogcli-mcp`) — Google Sheets (and more) for Claude via gogcli — read, write, and manage spreadsheets
+- **[gogcli (Classroom)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-classroom)** (`gogcli-mcp-classroom`) — Extended Google Classroom for Claude via gogcli — auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)
+- **[gogcli (Docs)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-docs)** (`gogcli-mcp-docs`) — Extended Google Docs for Claude via gogcli — auth + full Docs and comments support
+- **[gogcli (Drive)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-drive)** (`gogcli-mcp-drive`) — Extended Google Drive for Claude via gogcli — auth + full Drive support (upload, download, permissions, comments, shared drives)
+- **[gogcli (Sheets)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-sheets)** (`gogcli-mcp-sheets`) — Extended Google Sheets for Claude via gogcli — auth + full Sheets support
+- **[gogcli (Slides)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-slides)** (`gogcli-mcp-slides`) — Extended Google Slides for Claude via gogcli — auth + full Slides support (create, edit, export, templates, markdown)
 - **[homes.com](https://github.com/chrischall/homes-mcp)** (`homes-mcp`) — MCP server for homes.com — search listings, get property details, photo galleries, compare properties
 - **[HoneyBook](https://github.com/chrischall/honeybook-mcp)** (`honeybook`) — HoneyBook client-portal MCP for Claude — view wedding-vendor contracts and invoices via MCP
 - **[Infinite Campus](https://github.com/chrischall/infinitecampus-mcp)** (`infinitecampus-mcp`) — Infinite Campus (Campus Parent) MCP server for Claude — grades, attendance, assignments, messages, and documents via natural language
@@ -59,6 +63,12 @@ claude plugin install zillow-mcp@chrischall
 - **[Zillow](https://github.com/chrischall/zillow-mcp)** (`zillow-mcp`) — MCP server for Zillow — search listings, get property details, Zestimate history, saved searches & homes, market reports
 - **[Zola](https://github.com/chrischall/zola-mcp)** (`zola`) — Zola wedding planning tools for Claude — vendors, budget, guests, seating, events, registry, inquiries, and more via MCP
 
-## Updating
+## Regenerating
 
-Plugin versions are pulled from each source repo. To refresh the catalog after publishing a new server, add its entry to `.claude-plugin/marketplace.json` and commit.
+The manifest is generated from each source repo's own `marketplace.json`:
+
+```bash
+python3 scripts/regen.py
+```
+
+Monorepos (e.g. `gogcli-mcp`) are handled automatically — each subpackage under `packages/*` becomes its own entry via a `path` in the GitHub source.

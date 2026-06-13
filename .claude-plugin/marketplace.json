@@ -6,7 +6,7 @@
     "email": "chris.c.hall@gmail.com"
   },
   "metadata": {
-    "description": "Chris Hall's MCP servers for Claude \u2014 real estate, family/school, reservations, music, and productivity tools. Most route through your own signed-in browser sessions via the fetchproxy extension.",
+    "description": "Chris Hall's MCP servers for Claude \u2014 real estate, family/school, reservations, music, Google Workspace, and productivity tools. Most route through your own signed-in browser sessions via the fetchproxy extension.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -253,6 +253,177 @@
         "mcp"
       ],
       "category": "media"
+    },
+    {
+      "name": "gogcli-mcp",
+      "displayName": "gogcli",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/gogcli-mcp",
+        "path": "packages/gogcli-mcp"
+      },
+      "description": "Google Sheets (and more) for Claude via gogcli \u2014 read, write, and manage spreadsheets",
+      "version": "2.7.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp",
+      "repository": "https://github.com/chrischall/gogcli-mcp",
+      "license": "MIT",
+      "keywords": [
+        "google",
+        "sheets",
+        "spreadsheet",
+        "gmail",
+        "calendar",
+        "drive",
+        "gogcli",
+        "gog"
+      ],
+      "category": "productivity"
+    },
+    {
+      "name": "gogcli-mcp-classroom",
+      "displayName": "gogcli (Classroom)",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/gogcli-mcp",
+        "path": "packages/gogcli-mcp-classroom"
+      },
+      "description": "Extended Google Classroom for Claude via gogcli \u2014 auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)",
+      "version": "2.7.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-classroom",
+      "repository": "https://github.com/chrischall/gogcli-mcp",
+      "license": "MIT",
+      "keywords": [
+        "google",
+        "classroom",
+        "education",
+        "gogcli",
+        "gog",
+        "courses",
+        "assignments",
+        "grading",
+        "students",
+        "teachers"
+      ],
+      "category": "productivity"
+    },
+    {
+      "name": "gogcli-mcp-docs",
+      "displayName": "gogcli (Docs)",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/gogcli-mcp",
+        "path": "packages/gogcli-mcp-docs"
+      },
+      "description": "Extended Google Docs for Claude via gogcli \u2014 auth + full Docs and comments support",
+      "version": "2.7.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-docs",
+      "repository": "https://github.com/chrischall/gogcli-mcp",
+      "license": "MIT",
+      "keywords": [
+        "google",
+        "docs",
+        "documents",
+        "gogcli",
+        "gog",
+        "comments",
+        "export"
+      ],
+      "category": "productivity"
+    },
+    {
+      "name": "gogcli-mcp-drive",
+      "displayName": "gogcli (Drive)",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/gogcli-mcp",
+        "path": "packages/gogcli-mcp-drive"
+      },
+      "description": "Extended Google Drive for Claude via gogcli \u2014 auth + full Drive support (upload, download, permissions, comments, shared drives)",
+      "version": "2.7.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-drive",
+      "repository": "https://github.com/chrischall/gogcli-mcp",
+      "license": "MIT",
+      "keywords": [
+        "google",
+        "drive",
+        "gogcli",
+        "gog",
+        "upload",
+        "download",
+        "permissions",
+        "comments",
+        "shared-drives"
+      ],
+      "category": "productivity"
+    },
+    {
+      "name": "gogcli-mcp-sheets",
+      "displayName": "gogcli (Sheets)",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/gogcli-mcp",
+        "path": "packages/gogcli-mcp-sheets"
+      },
+      "description": "Extended Google Sheets for Claude via gogcli \u2014 auth + full Sheets support",
+      "version": "2.7.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-sheets",
+      "repository": "https://github.com/chrischall/gogcli-mcp",
+      "license": "MIT",
+      "keywords": [
+        "google",
+        "sheets",
+        "spreadsheet",
+        "gogcli",
+        "gog",
+        "tabs",
+        "formatting",
+        "named-ranges"
+      ],
+      "category": "productivity"
+    },
+    {
+      "name": "gogcli-mcp-slides",
+      "displayName": "gogcli (Slides)",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/gogcli-mcp",
+        "path": "packages/gogcli-mcp-slides"
+      },
+      "description": "Extended Google Slides for Claude via gogcli \u2014 auth + full Slides support (create, edit, export, templates, markdown)",
+      "version": "2.7.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-slides",
+      "repository": "https://github.com/chrischall/gogcli-mcp",
+      "license": "MIT",
+      "keywords": [
+        "google",
+        "slides",
+        "presentations",
+        "gogcli",
+        "gog",
+        "markdown",
+        "templates",
+        "pdf",
+        "pptx"
+      ],
+      "category": "productivity"
     },
     {
       "name": "homes-mcp",

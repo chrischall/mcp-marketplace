@@ -586,8 +586,8 @@
         "source": "github",
         "repo": "chrischall/ofw-mcp"
       },
-      "description": "OurFamilyWizard co-parenting tools for Claude — messages, calendar, expenses, and journal via MCP",
-      "version": "2.3.2",
+      "description": "OurFamilyWizard co-parenting tools for Claude \u2014 messages, calendar, expenses, and journal via MCP",
+      "version": "2.4.1",
       "author": {
         "name": "Chris Chall"
       },

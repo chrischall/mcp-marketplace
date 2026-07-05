@@ -75,7 +75,8 @@ def main():
     if dups:
         raise SystemExit(f"Duplicate plugin names: {dups}")
     with open(OUT, "w") as f:
-        json.dump(market, f, indent=2)
+        # ensure_ascii=False to match release-please's JSON.stringify output
+        json.dump(market, f, indent=2, ensure_ascii=False)
         f.write("\n")
     print(f"Wrote {len(plugins)} plugins to {os.path.normpath(OUT)}")
     for p in plugins:

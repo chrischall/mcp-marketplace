@@ -46,7 +46,9 @@ jobs:
           import json, pathlib, sys
           p = pathlib.Path(".claude-plugin/marketplace.json")
           raw = p.read_text()
-          canonical = json.dumps(json.loads(raw), indent=2) + "\n"
+          # ensure_ascii=False so the canonical form matches release-please's
+          # JSON.stringify output (literal UTF-8, e.g. em-dashes) — see #11.
+          canonical = json.dumps(json.loads(raw), indent=2, ensure_ascii=False) + "\n"
           if raw != canonical:
               print("::error::marketplace.json is not canonically formatted "
                     "(run `python3 scripts/regen.py` and commit).")

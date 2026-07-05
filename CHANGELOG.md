@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.2](https://github.com/chrischall/mcp-marketplace/compare/v1.0.1...v1.0.2) (2026-07-05)
+
+
+### Bug Fixes
+
+* regenerate marketplace.json (canonical formatting + upstream version bumps) ([#6](https://github.com/chrischall/mcp-marketplace/issues/6)) ([d5faf27](https://github.com/chrischall/mcp-marketplace/commit/d5faf2737f267ff5777d794dc58635a8cb5856e5))
+* serialize marketplace.json as literal UTF-8 to match release-please ([#12](https://github.com/chrischall/mcp-marketplace/issues/12)) ([1c4b366](https://github.com/chrischall/mcp-marketplace/commit/1c4b36642971bd77f0ae5ae269ceda6ebd0627a6)), closes [#11](https://github.com/chrischall/mcp-marketplace/issues/11)
+
+
+### Documentation
+
+* align CLAUDE.md with auto-review verdict gating + follow-up convention ([#9](https://github.com/chrischall/mcp-marketplace/issues/9)) ([dca6bc2](https://github.com/chrischall/mcp-marketplace/commit/dca6bc2c904010e5491419e1ba0266f57af3f6bc))
+* document Conventional Commit PR-title requirement for release-please ([#8](https://github.com/chrischall/mcp-marketplace/issues/8)) ([5082e8b](https://github.com/chrischall/mcp-marketplace/commit/5082e8b06f79b0f6db08b7856685dc2030feec50))
+
 ## [1.0.1](https://github.com/chrischall/mcp-marketplace/compare/v1.0.0...v1.0.1) (2026-06-13)
 
 

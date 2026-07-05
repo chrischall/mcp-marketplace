@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Chris Hall's MCP servers for Claude — real estate, family/school, reservations, music, Google Workspace, and productivity tools. Most route through your own signed-in browser sessions via the fetchproxy extension.",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "plugins": [
     {

@@ -3,7 +3,7 @@ name: Auto-merge PRs
 # Thin stub — the pipeline lives in chrischall/workflows (see
 # reusable-auto-merge.yml). Arms `gh pr merge --auto --squash` for
 # dependabot PRs (as soon as non-draft) and for same-repo PRs carrying
-# `ready-to-merge`. The merge still waits on the required `ci / ci` check,
+# `ready-to-merge`. The merge still waits on the required `ci-gated` check,
 # so this is "merge when CI is green", not "merge without CI".
 #
 # `pull_request_target` so dependabot's restricted token can arm; PR code

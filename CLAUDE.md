@@ -35,13 +35,13 @@ Commit messages on `main`:
 - It opens a release PR that bumps `metadata.version` +
   `.release-please-manifest.json` and updates `CHANGELOG.md`. Merging that PR
   tags `v<version>` and cuts a GitHub Release.
-- `ready-to-merge` arms auto-merge (lands when `ci / ci` is green); auto-review
+- `ready-to-merge` arms auto-merge (lands when `ci-gated` is green); auto-review
   adds it on a `pass`/`warn` verdict, or add it yourself to override a `fail`.
   Add `release-ready` to a release-please PR to run CI/review and ship it.
 
 ## CI
 
-`ci.yml` (job `ci`, check context `ci / ci`, the required status check in the
+`ci.yml` (job `ci`, check context `ci-gated`, the required status check in the
 branch ruleset) runs `scripts/validate.py` and the formatting check. No build,
 no Node — Python only.
 

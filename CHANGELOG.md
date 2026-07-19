@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/chrischall/mcp-marketplace/compare/v1.0.3...v1.0.4) (2026-07-19)
+
+
+### Documentation
+
+* replace duplicated fleet policy with a pointer ([#17](https://github.com/chrischall/mcp-marketplace/issues/17)) ([b92743b](https://github.com/chrischall/mcp-marketplace/commit/b92743b654d758f9ac4eec15b2a37938270e11d5))
+
 ## [1.0.3](https://github.com/chrischall/mcp-marketplace/compare/v1.0.2...v1.0.3) (2026-07-13)
 
 

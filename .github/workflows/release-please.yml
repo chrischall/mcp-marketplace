@@ -1,32 +1,57 @@
 name: release-please
 
-# Canonical release-please workflow (catalog variant — no publish job).
+# Thin stub: release-please itself runs in chrischall/workflows'
+# reusable-release-please.yml (chrischall/workflows#283). This file was one of
+# 81 copies that had drifted into 18 variants, so a fix to release behaviour was
+# a fleet sweep; calling the shared workflow is what ends that. The config and
+# manifest paths it passes to the action are this repo's own
+# (release-please-config.json, .release-please-manifest.json), and
+# `release-type: simple` + `extra-files` stay where they were — in the config
+# file, not in the workflow.
 #
-# On every push to main, googleapis/release-please-action scans
-# Conventional-Commit messages since the last release tag and:
+# THE CATALOG VARIANT: THERE IS NO PUBLISH JOB.
+# Unlike the MCP-server repos there is nothing to publish to npm or the MCP
+# registry — each plugin is referenced from its own source repo — so the
+# `v<VERSION>` tag and the GitHub Release release-please cuts ARE the whole
+# release. Nothing here is gated on `release_created`, which means the failure
+# that motivated the reusable workflow (a transient API error losing that flag
+# AFTER the tag and Release were cut, stranding the publish with no way to
+# finish it) cannot strand anything in this repo.
 #
-#   - If new fix:/feat:/etc. commits are present, opens or updates a
-#     "release PR" that bumps `metadata.version` in
-#     .claude-plugin/marketplace.json (see release-please-config.json),
-#     bumps .release-please-manifest.json, and updates CHANGELOG.md.
-#   - When that release PR merges, the action creates a `v<VERSION>` tag
-#     and a GitHub Release populated from the CHANGELOG section.
+# `republish_tag` below is therefore carried for fleet parity, and for the day
+# this repo grows something to publish. Today it only SKIPS release-please, so a
+# dispatch that sets it does nothing. Leave it blank.
 #
-# The release PR is left open as a human review gate. Merge it (via the UI,
-# or by adding `ready-to-merge` so auto-merge.yml arms it) when ready.
+# What release-please does here, on every push to main:
 #
-# Unlike the MCP-server repos there is nothing to publish to npm/MCP
-# registries — the plugins are referenced from their own source repos — so
-# the tag + GitHub Release is the whole release.
+#   - If new fix:/feat:/etc. commits are present, opens or updates a "release
+#     PR" that bumps `metadata.version` in .claude-plugin/marketplace.json (via
+#     `extra-files` in release-please-config.json), bumps
+#     .release-please-manifest.json, and updates CHANGELOG.md.
+#   - When that release PR merges, the action creates the `v<VERSION>` tag and a
+#     GitHub Release populated from the CHANGELOG section.
 #
-# RELEASE_PAT (not GITHUB_TOKEN) is used so the release PR's `opened`
-# event triggers downstream workflows (CI, pr-auto-review.yml). GitHub
-# suppresses workflow runs for events triggered by GITHUB_TOKEN.
+# The release PR is left open as a human review gate. Merge it (via the UI, or
+# by adding `release-ready` so the review runs and auto-merge arms it).
+#
+# RELEASE_PAT (not GITHUB_TOKEN) is passed so the release PR's `opened` event
+# triggers downstream workflows (ci.yml, pr-auto-review.yml). GitHub suppresses
+# workflow runs for events triggered by GITHUB_TOKEN.
 
 on:
   push:
     branches: [main]
+  # Still a manual re-run of release-please, as before: the input defaults to
+  # blank and a blank value is the ordinary path. It lives in this file rather
+  # than in the reusable workflow because a called workflow cannot declare its
+  # caller's triggers.
   workflow_dispatch:
+    inputs:
+      republish_tag:
+        description: 'Existing tag to re-publish (e.g. v1.2.3). This catalog has no publish job, so a value here only skips release-please — leave it blank.'
+        required: false
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -38,11 +63,8 @@ concurrency:
 
 jobs:
   release-please:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: googleapis/release-please-action@v5
-        id: release
-        with:
-          token: ${{ secrets.RELEASE_PAT }}
-          config-file: release-please-config.json
-          manifest-file: .release-please-manifest.json
+    uses: chrischall/workflows/.github/workflows/reusable-release-please.yml@main
+    with:
+      republish_tag: ${{ inputs.republish_tag }}
+    secrets:
+      release_pat: ${{ secrets.RELEASE_PAT }}

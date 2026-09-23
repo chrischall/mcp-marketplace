@@ -35,9 +35,10 @@ Commit messages on `main`:
 - It opens a release PR that bumps `metadata.version` +
   `.release-please-manifest.json` and updates `CHANGELOG.md`. Merging that PR
   tags `v<version>` and cuts a GitHub Release.
-- `ready-to-merge` arms auto-merge (lands when `ci-gated` is green); auto-review
-  adds it on a `pass`/`warn` verdict, or add it yourself to override a `fail`.
-  Add `release-ready` to a release-please PR to run CI/review and ship it.
+- `ready-to-merge` arms auto-merge (lands when `ci-gated` is green); only
+  auto-review adds it, on a `pass`/`warn` verdict. Never add it yourself — not
+  to override a `fail`, not to ship a `warn` early. Adding `release-ready` to a
+  release-please PR starts CI/review; the pipeline arms it on a pass.
 
 ## CI
 

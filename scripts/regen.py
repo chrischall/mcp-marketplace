@@ -1,15 +1,101 @@
 #!/usr/bin/env python3
-"""Regenerate .claude-plugin/marketplace.json from every chrischall/*-mcp repo
-under ~/git. Each repo's own marketplace.json plugin entries are authoritative;
-this script only rewrites `source` to point at the GitHub repo (with a `path`
-for monorepo subpackages). Run: python3 scripts/regen.py
-"""
-import json, os, glob, subprocess
+"""Regenerate .claude-plugin/marketplace.json from the chrischall GitHub repos.
 
-GITROOT = os.path.expanduser("~/git")
+The repo list is the chrischall GitHub account (archived repos skipped; forks
+only when listed in INCLUDE_FORKS), and every manifest is read from the repo's
+DEFAULT BRANCH on GitHub. Nothing is read from local clones: they may sit on an
+unmerged branch, and a repo that isn't cloned would silently drop out.
+
+Each repo's own .claude-plugin/marketplace.json plugin entry is authoritative;
+this script only rewrites `source` to point at the GitHub repo (a `git-subdir`
+source for monorepo subpackages). metadata.version is carried from
+.release-please-manifest.json, which release-please owns.
+
+A plugin that was in the catalog but is no longer found fails the run; pass
+`--allow-removal <name>` (repeatable) when the removal is intended.
+
+Needs an authenticated `gh` CLI. Run: python3 scripts/regen.py
+"""
+import argparse
+import json
+import os
+import subprocess
+
+OWNER = "chrischall"
 SELF = "mcp-marketplace"  # don't scan the catalog repo itself
+MANIFEST = ".claude-plugin/marketplace.json"
+# Forks are usually upstream projects whose own manifest isn't ours to publish.
+# These forks are maintained here and ship a chrischall plugin.
+INCLUDE_FORKS = {"apple-mail-mcp"}
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-OUT = os.path.join(ROOT, ".claude-plugin", "marketplace.json")
+
+
+def _gh(args):
+    res = subprocess.run(["gh", *args], capture_output=True, text=True)
+    if res.returncode != 0:
+        raise SystemExit(f"gh {' '.join(args)} failed: {res.stderr.strip()}")
+    return res.stdout
+
+
+class GitHub:
+    """Reads repos and manifests from GitHub via the `gh` CLI."""
+
+    def __init__(self, run=_gh, owner=OWNER):
+        self.run = run
+        self.owner = owner
+
+    def list_repos(self):
+        return json.loads(self.run(["repo", "list", self.owner, "--limit", "1000",
+                                    "--json", "name,isFork,isArchived"]))
+
+    def manifest_paths(self, repo):
+        tree = json.loads(self.run(["api", f"repos/{self.owner}/{repo}/git/trees/HEAD?recursive=1"]))
+        if tree.get("truncated"):
+            raise SystemExit(f"{self.owner}/{repo}: git tree listing truncated; can't find every manifest")
+        return sorted(e["path"] for e in tree.get("tree", [])
+                      if e.get("type") == "blob"
+                      and (e["path"] == MANIFEST or e["path"].endswith("/" + MANIFEST)))
+
+    def read(self, repo, path):
+        # No ?ref= — the contents API defaults to the repo's default branch.
+        return json.loads(self.run(["api", "-H", "Accept: application/vnd.github.raw+json",
+                                    f"repos/{self.owner}/{repo}/contents/{path}"]))
+
+
+def plugin_entry(repo, rel, data, owner=OWNER):
+    entry = (data.get("plugins") or [None])[0]
+    if not entry:
+        return None
+    entry = dict(entry)
+    base = f"https://github.com/{owner}/{repo}"
+    if rel == ".":
+        entry["source"] = {"source": "github", "repo": f"{owner}/{repo}"}
+    else:
+        # Monorepo subpackage: `github` sources have no `path` field
+        # (Claude Code silently ignores it and looks at the repo root),
+        # so subdirectory plugins must use the `git-subdir` source type.
+        entry["source"] = {"source": "git-subdir", "url": f"{base}.git", "path": rel}
+    entry.setdefault("homepage", base if rel == "." else f"{base}/tree/main/{rel}")
+    entry.setdefault("repository", base)
+    return entry
+
+
+def collect(source):
+    plugins = []
+    for r in sorted(source.list_repos(), key=lambda r: r["name"]):
+        name = r["name"]
+        if name == SELF or r.get("isArchived"):
+            continue
+        if r.get("isFork") and name not in INCLUDE_FORKS:
+            continue
+        for path in source.manifest_paths(name):
+            if "node_modules/" in path:
+                continue
+            rel = os.path.dirname(os.path.dirname(path)) or "."
+            entry = plugin_entry(name, rel, source.read(name, path))
+            if entry:
+                plugins.append(entry)
+    return plugins
 
 
 def catalog_version(root=ROOT):
@@ -39,59 +125,33 @@ def build_catalog(plugins, version):
     }
 
 
-def remote(repo):
+def main(argv=None, source=None, root=ROOT):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--allow-removal", action="append", default=[], metavar="NAME",
+                    help="allow a currently listed plugin to drop out of the catalog")
+    args = ap.parse_args(argv)
+    out = os.path.join(root, ".claude-plugin", "marketplace.json")
+
     try:
-        return subprocess.run(
-            ["git", "-C", os.path.join(GITROOT, repo), "remote", "get-url", "origin"],
-            capture_output=True, text=True).stdout.strip()
-    except Exception:
-        return ""
+        with open(out) as f:
+            previous = {p["name"] for p in json.load(f).get("plugins", [])}
+    except FileNotFoundError:
+        previous = set()
 
+    plugins = collect(source or GitHub())
+    gone = sorted(previous - {p["name"] for p in plugins} - set(args.allow_removal))
+    if gone:
+        raise SystemExit(
+            f"These listed plugins were not found on any default branch: {', '.join(gone)}. "
+            f"If that is intended, re-run with --allow-removal for each.")
 
-def main():
-    plugins = []
-    for repo in sorted(os.listdir(GITROOT)):
-        repodir = os.path.join(GITROOT, repo)
-        if repo == SELF or not os.path.isdir(repodir):
-            continue
-        r = remote(repo)
-        if "chrischall/" not in r:
-            continue
-        # find every marketplace.json in the repo, skipping node_modules
-        for mpath in sorted(glob.glob(os.path.join(repodir, "**", ".claude-plugin", "marketplace.json"),
-                                      recursive=True)):
-            if os.sep + "node_modules" + os.sep in mpath:
-                continue
-            rel = os.path.relpath(os.path.dirname(os.path.dirname(mpath)), repodir)
-            data = json.load(open(mpath))
-            entry = (data.get("plugins") or [None])[0]
-            if not entry:
-                continue
-            entry = dict(entry)
-            if rel == ".":
-                src = {"source": "github", "repo": f"chrischall/{repo}"}
-            else:
-                # Monorepo subpackage: `github` sources have no `path` field
-                # (Claude Code silently ignores it and looks at the repo root),
-                # so subdirectory plugins must use the `git-subdir` source type.
-                src = {
-                    "source": "git-subdir",
-                    "url": f"https://github.com/chrischall/{repo}.git",
-                    "path": rel,
-                }
-            entry["source"] = src
-            base = f"https://github.com/chrischall/{repo}"
-            entry.setdefault("homepage", base if rel == "." else f"{base}/tree/main/{rel}")
-            entry.setdefault("repository", base)
-            plugins.append(entry)
-
-    market = build_catalog(plugins, catalog_version())
-    with open(OUT, "w") as f:
+    market = build_catalog(plugins, catalog_version(root))
+    with open(out, "w") as f:
         # ensure_ascii=False to match release-please's JSON.stringify output
         json.dump(market, f, indent=2, ensure_ascii=False)
         f.write("\n")
-    print(f"Wrote {len(plugins)} plugins to {os.path.normpath(OUT)}")
-    for p in plugins:
+    print(f"Wrote {len(market['plugins'])} plugins to {os.path.normpath(out)}")
+    for p in market["plugins"]:
         s = p["source"]
         loc = s.get("repo") or s.get("url", "")
         if "path" in s:

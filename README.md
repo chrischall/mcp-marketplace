@@ -65,10 +65,12 @@ claude plugin install zillow-mcp@chrischall
 
 ## Regenerating
 
-The manifest is generated from each source repo's own `marketplace.json`:
+The manifest is generated from each source repo's own `marketplace.json`, read from the repo's default branch on GitHub (needs an authenticated `gh`):
 
 ```bash
 python3 scripts/regen.py
+# a listed plugin that disappeared fails the run; if intended:
+python3 scripts/regen.py --allow-removal <plugin-name>
 ```
 
-Monorepos (e.g. `gogcli-mcp`) are handled automatically — each subpackage under `packages/*` becomes its own entry via a `path` in the GitHub source.
+Monorepos (e.g. `gogcli-mcp`) are handled automatically — each subpackage with its own `.claude-plugin/marketplace.json` becomes its own entry via a `git-subdir` source.

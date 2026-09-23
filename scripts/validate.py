@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Validate .claude-plugin/marketplace.json — the CI gate for this catalog.
 
-Checks structural integrity rather than regenerating (regen.py depends on the
-sibling source repos existing on disk, which they don't in CI):
+Checks structural integrity rather than regenerating (regen.py reads every
+source repo from GitHub, which a PR's CI token can't do across private repos):
   - JSON parses
   - top-level $schema / name / metadata.version present
   - every plugin has name + description + a valid source (github+repo, or

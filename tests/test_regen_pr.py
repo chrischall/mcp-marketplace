@@ -14,7 +14,9 @@ SCRIPT = pathlib.Path(__file__).resolve().parent.parent / "scripts" / "regen-pr.
 FAKE_GH = """#!/bin/sh
 echo "$*" >> "$GH_LOG"
 case "$1 $2" in
-  "pr list") [ -n "$OPEN_PR" ] && echo "$OPEN_PR" ;;
+  "pr list")
+    [ -n "$GH_LIST_FAIL" ] && { echo "gh: HTTP 502" >&2; exit 1; }
+    [ -n "$OPEN_PR" ] && echo "$OPEN_PR" ;;
 esac
 exit 0
 """
@@ -46,9 +48,10 @@ class RegenPr(unittest.TestCase):
         gh.write_text(FAKE_GH)
         gh.chmod(gh.stat().st_mode | stat.S_IEXEC)
 
-    def run_script(self, open_pr=""):
+    def run_script(self, open_pr="", list_fails=False):
         env = dict(os.environ, PATH=f"{self.bin}:{os.environ['PATH']}",
-                   GH_LOG=str(self.log), OPEN_PR=open_pr, BRANCH="bot/regen-catalog")
+                   GH_LOG=str(self.log), OPEN_PR=open_pr, BRANCH="bot/regen-catalog",
+                   GH_LIST_FAIL="1" if list_fails else "")
         r = subprocess.run(["bash", str(SCRIPT)], cwd=self.work, env=env,
                            capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
@@ -64,6 +67,13 @@ class RegenPr(unittest.TestCase):
 
     def test_current_catalog_without_open_pr_does_nothing(self):
         calls = self.run_script(open_pr="")
+        self.assertFalse(any(c.startswith(("pr close", "pr create")) for c in calls), calls)
+
+    def test_current_catalog_survives_failed_pr_lookup(self):
+        # A transient `gh pr list` failure must not fail the regen run: with
+        # nothing to publish, the stale-PR sweep is best-effort and the next
+        # scheduled run retries it (follow-up #33).
+        calls = self.run_script(open_pr="42", list_fails=True)
         self.assertFalse(any(c.startswith(("pr close", "pr create")) for c in calls), calls)
 
     def test_changed_catalog_opens_pr_and_never_closes(self):

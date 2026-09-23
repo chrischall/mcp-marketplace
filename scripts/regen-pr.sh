@@ -16,7 +16,13 @@ open_pr() {
 
 if git diff --quiet -- "${FILES[@]}"; then
   echo "catalog already current"
-  pr="$(open_pr)"
+  # Best-effort: nothing to publish, so a transient `gh pr list` failure must
+  # not fail the run (set -e would abort on this bare assignment). The next
+  # scheduled run retries the sweep.
+  if ! pr="$(open_pr)"; then
+    echo "::warning::could not list open regen PRs; skipping the stale-PR sweep"
+    exit 0
+  fi
   if [ -n "$pr" ]; then
     echo "closing stale regen PR #$pr"
     gh pr close "$pr" --delete-branch \

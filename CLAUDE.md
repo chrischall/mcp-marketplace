@@ -16,7 +16,8 @@ referenced by its own GitHub source repo. It contains no application code.
   change the catalog, merge the change in the source repo, then run
   `python3 scripts/regen.py` and commit the result — or let `regen.yml`
   (daily + `workflow_dispatch`, via `RELEASE_PAT`) open the
-  `bot/regen-catalog` PR. regen also rewrites the README's `## Servers` list,
+  `bot/regen-catalog` PR (`scripts/regen-pr.sh`; when `main` is already
+  current it closes a stale open regen PR instead). regen also rewrites the README's `## Servers` list,
   and a test fails if the committed README and catalog disagree.
 - **Formatting is canonical** `json.dumps(..., indent=2)` + trailing newline.
   CI fails if `marketplace.json` doesn't match that exact formatting.

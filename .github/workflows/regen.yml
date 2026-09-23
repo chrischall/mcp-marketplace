@@ -5,7 +5,8 @@ name: regen
 # chrischall repo's DEFAULT BRANCH (scripts/regen.py reads GitHub, not local
 # clones) and, when anything changed, opens or updates one PR from the
 # `bot/regen-catalog` branch. That PR goes through CI and auto-review like any
-# other.
+# other. When main is already current, a still-open regen PR is closed
+# (its plugin versions are stale) -- see scripts/regen-pr.sh.
 #
 # RELEASE_PAT (not GITHUB_TOKEN) is used because:
 #   - regen.py must list and read the account's private repos too, which this
@@ -49,20 +50,6 @@ jobs:
       - name: Validate
         run: python3 scripts/validate.py
 
-      - name: Open or update the regen PR
-        run: |
-          if git diff --quiet -- .claude-plugin/marketplace.json README.md; then
-            echo "catalog already current"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -C "$BRANCH"
-          git add .claude-plugin/marketplace.json README.md
-          git commit -m "fix: refresh the plugin catalog from the source repos"
-          git push --force origin "$BRANCH"
-          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
-            gh pr create --head "$BRANCH" --base main \
-              --title "fix: refresh the plugin catalog from the source repos" \
-              --body "Automated \`scripts/regen.py\` run (regen.yml): rebuilt the catalog and README server list from every chrischall repo's default branch."
-          fi
+      # Opens/updates the regen PR, or closes a stale one when main is current.
+      - name: Open, update or close the regen PR
+        run: scripts/regen-pr.sh

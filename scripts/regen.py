@@ -8,7 +8,35 @@ import json, os, glob, subprocess
 
 GITROOT = os.path.expanduser("~/git")
 SELF = "mcp-marketplace"  # don't scan the catalog repo itself
-OUT = os.path.join(os.path.dirname(__file__), "..", ".claude-plugin", "marketplace.json")
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+OUT = os.path.join(ROOT, ".claude-plugin", "marketplace.json")
+
+
+def catalog_version(root=ROOT):
+    """metadata.version is owned by release-please (extra-files), so carry the
+    released version from .release-please-manifest.json instead of resetting it."""
+    with open(os.path.join(root, ".release-please-manifest.json")) as f:
+        return json.load(f)["."]
+
+
+def build_catalog(plugins, version):
+    plugins = sorted(plugins, key=lambda p: p["name"])
+    names = [p["name"] for p in plugins]
+    dups = {n for n in names if names.count(n) > 1}
+    if dups:
+        raise SystemExit(f"Duplicate plugin names: {dups}")
+    return {
+        "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+        "name": "chrischall",
+        "owner": {"name": "Chris Hall", "email": "chris.c.hall@gmail.com"},
+        "metadata": {
+            "description": "Chris Hall's MCP servers for Claude — real estate, family/school, "
+                           "reservations, music, Google Workspace, and productivity tools. Most route "
+                           "through your own signed-in browser sessions via the fetchproxy extension.",
+            "version": version,
+        },
+        "plugins": plugins,
+    }
 
 
 def remote(repo):
@@ -57,23 +85,7 @@ def main():
             entry.setdefault("repository", base)
             plugins.append(entry)
 
-    plugins.sort(key=lambda p: p["name"])
-    market = {
-        "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-        "name": "chrischall",
-        "owner": {"name": "Chris Hall", "email": "chris.c.hall@gmail.com"},
-        "metadata": {
-            "description": "Chris Hall's MCP servers for Claude — real estate, family/school, "
-                           "reservations, music, Google Workspace, and productivity tools. Most route "
-                           "through your own signed-in browser sessions via the fetchproxy extension.",
-            "version": "1.0.0",
-        },
-        "plugins": plugins,
-    }
-    names = [p["name"] for p in plugins]
-    dups = {n for n in names if names.count(n) > 1}
-    if dups:
-        raise SystemExit(f"Duplicate plugin names: {dups}")
+    market = build_catalog(plugins, catalog_version())
     with open(OUT, "w") as f:
         # ensure_ascii=False to match release-please's JSON.stringify output
         json.dump(market, f, indent=2, ensure_ascii=False)

@@ -8,6 +8,8 @@ sibling source repos existing on disk, which they don't in CI):
   - every plugin has name + description + a valid source (github+repo, or
     git-subdir+url+path for monorepo subpackages)
   - plugin names are unique
+  - metadata.version equals .release-please-manifest.json (release-please owns
+    it; a regen that resets it is caught here)
 Exit non-zero with a readable report on any failure.
 """
 import json
@@ -15,17 +17,18 @@ import pathlib
 import sys
 
 MANIFEST = pathlib.Path(".claude-plugin/marketplace.json")
+RELEASE_MANIFEST = pathlib.Path(".release-please-manifest.json")
 
 
-def main() -> int:
+def validate(root=pathlib.Path(".")) -> list:
+    """Return a list of error strings for the catalog under `root`."""
+    root = pathlib.Path(root)
     try:
-        data = json.loads(MANIFEST.read_text())
+        data = json.loads((root / MANIFEST).read_text())
     except FileNotFoundError:
-        print(f"{MANIFEST} not found")
-        return 1
+        return [f"{MANIFEST} not found"]
     except json.JSONDecodeError as e:
-        print(f"{MANIFEST} is not valid JSON: {e}")
-        return 1
+        return [f"{MANIFEST} is not valid JSON: {e}"]
 
     errs = []
     if not data.get("$schema"):
@@ -34,6 +37,17 @@ def main() -> int:
         errs.append("missing top-level name")
     if not (data.get("metadata") or {}).get("version"):
         errs.append("missing metadata.version")
+    else:
+        try:
+            released = json.loads((root / RELEASE_MANIFEST).read_text()).get(".")
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            errs.append(f"cannot read {RELEASE_MANIFEST}: {e}")
+        else:
+            if data["metadata"]["version"] != released:
+                errs.append(
+                    f"metadata.version is {data['metadata']['version']} but "
+                    f"{RELEASE_MANIFEST} says {released} — release-please owns "
+                    f"this field; don't reset it")
 
     plugins = data.get("plugins") or []
     if not plugins:
@@ -63,13 +77,19 @@ def main() -> int:
     if dups:
         errs.append(f"duplicate plugin names: {dups}")
 
+    return errs
+
+
+def main() -> int:
+    errs = validate()
     if errs:
         print(f"{MANIFEST} INVALID:")
         for e in errs:
             print(f"  - {e}")
         return 1
 
-    print(f"{MANIFEST} OK — {len(plugins)} plugins, version {data['metadata']['version']}")
+    data = json.loads(MANIFEST.read_text())
+    print(f"{MANIFEST} OK — {len(data['plugins'])} plugins, version {data['metadata']['version']}")
     return 0
 
 

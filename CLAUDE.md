@@ -43,7 +43,9 @@ Commit messages on `main`:
 ## CI
 
 `ci.yml` (job `ci`, check context `ci-gated`, the required status check in the
-branch ruleset) runs `scripts/validate.py` and the formatting check. No build,
+branch ruleset) runs the script tests (`python3 -m unittest discover -s tests -t .`),
+`scripts/validate.py` (which also fails if `metadata.version` drifts from
+`.release-please-manifest.json`) and the formatting check. No build,
 no Node — Python only.
 
 <!-- pr-workflow:v3 -->

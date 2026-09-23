@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/chrischall/mcp-marketplace/compare/v1.0.4...v1.0.5) (2026-09-23)
+
+
+### Bug Fixes
+
+* regenerate the catalog from GitHub default branches and keep it current ([#29](https://github.com/chrischall/mcp-marketplace/issues/29)) ([4d57a65](https://github.com/chrischall/mcp-marketplace/commit/4d57a65251e2f58b6dd4c70bcbcdebef016cce81))
+
 ## [1.0.4](https://github.com/chrischall/mcp-marketplace/compare/v1.0.3...v1.0.4) (2026-07-19)
 
 

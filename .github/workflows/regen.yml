@@ -1,0 +1,68 @@
+name: regen
+
+# Keeps the catalog from drifting behind the fleet (chrischall/fleet-audit#158).
+# Rebuilds .claude-plugin/marketplace.json + the README server list from every
+# chrischall repo's DEFAULT BRANCH (scripts/regen.py reads GitHub, not local
+# clones) and, when anything changed, opens or updates one PR from the
+# `bot/regen-catalog` branch. That PR goes through CI and auto-review like any
+# other.
+#
+# RELEASE_PAT (not GITHUB_TOKEN) is used because:
+#   - regen.py must list and read the account's private repos too, which this
+#     repo's GITHUB_TOKEN cannot see; and
+#   - GitHub suppresses workflow runs for events GITHUB_TOKEN triggers, so a PR
+#     it opened would never get ci / pr-auto-review.
+# A plugin that drops out of the catalog (repo deleted, archived, manifest
+# removed, or not visible to the token) fails the run instead of silently
+# shrinking the catalog; run regen.py locally with --allow-removal if intended.
+
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: regen
+  cancel-in-progress: false
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.RELEASE_PAT }}
+      BRANCH: bot/regen-catalog
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.RELEASE_PAT }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate from default branches
+        run: python3 scripts/regen.py
+
+      - name: Validate
+        run: python3 scripts/validate.py
+
+      - name: Open or update the regen PR
+        run: |
+          if git diff --quiet -- .claude-plugin/marketplace.json README.md; then
+            echo "catalog already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$BRANCH"
+          git add .claude-plugin/marketplace.json README.md
+          git commit -m "fix: refresh the plugin catalog from the source repos"
+          git push --force origin "$BRANCH"
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create --head "$BRANCH" --base main \
+              --title "fix: refresh the plugin catalog from the source repos" \
+              --body "Automated \`scripts/regen.py\` run (regen.yml): rebuilt the catalog and README server list from every chrischall repo's default branch."
+          fi

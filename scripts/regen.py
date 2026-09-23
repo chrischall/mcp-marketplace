@@ -125,6 +125,27 @@ def build_catalog(plugins, version):
     }
 
 
+def render_servers(plugins):
+    """The README's `## Servers` section: one list per category."""
+    by_cat = {}
+    for p in sorted(plugins, key=lambda p: p["name"]):
+        by_cat.setdefault(p.get("category") or "other", []).append(p)
+    out = [f"## Servers ({len(plugins)})\n\n"]
+    for cat in sorted(by_cat):
+        out.append(f"### {cat}\n\n")
+        for p in by_cat[cat]:
+            out.append(f"- **[{p.get('displayName') or p['name']}]({p['homepage']})** "
+                       f"(`{p['name']}`) — {p['description']}\n")
+        out.append("\n")
+    return "".join(out)
+
+
+def update_readme(text, plugins):
+    start = text.index("## Servers")
+    end = text.index("\n## ", start) + 1
+    return text[:start] + render_servers(plugins) + text[end:]
+
+
 def main(argv=None, source=None, root=ROOT):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--allow-removal", action="append", default=[], metavar="NAME",
@@ -150,6 +171,12 @@ def main(argv=None, source=None, root=ROOT):
         # ensure_ascii=False to match release-please's JSON.stringify output
         json.dump(market, f, indent=2, ensure_ascii=False)
         f.write("\n")
+    readme = os.path.join(root, "README.md")
+    if os.path.exists(readme):
+        with open(readme) as f:
+            text = f.read()
+        with open(readme, "w") as f:
+            f.write(update_readme(text, market["plugins"]))
     print(f"Wrote {len(market['plugins'])} plugins to {os.path.normpath(out)}")
     for p in market["plugins"]:
         s = p["source"]

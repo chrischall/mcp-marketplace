@@ -7,11 +7,17 @@ referenced by its own GitHub source repo. It contains no application code.
 ## Conventions
 
 - **`.claude-plugin/marketplace.json` is generated, not hand-edited.** It is
-  produced by `scripts/regen.py`, which reads each `chrischall/*-mcp` repo's own
-  `.claude-plugin/marketplace.json` and rewrites each `source` to a GitHub
-  source (adding a `path` for monorepo subpackages like `gogcli-mcp`). To change
-  the catalog, add/adjust the source repo, then run `python3 scripts/regen.py`
-  and commit the result.
+  produced by `scripts/regen.py`, which lists the `chrischall` GitHub repos
+  (archived skipped; forks only via `INCLUDE_FORKS`), reads each one's
+  `.claude-plugin/marketplace.json` **from its default branch on GitHub** (via
+  `gh`, never from local clones), and rewrites each `source` to a GitHub source
+  (`git-subdir` for monorepo subpackages like `gogcli-mcp`). A listed plugin
+  that disappears fails the run unless passed as `--allow-removal <name>`. To
+  change the catalog, merge the change in the source repo, then run
+  `python3 scripts/regen.py` and commit the result — or let `regen.yml`
+  (daily + `workflow_dispatch`, via `RELEASE_PAT`) open the
+  `bot/regen-catalog` PR. regen also rewrites the README's `## Servers` list,
+  and a test fails if the committed README and catalog disagree.
 - **Formatting is canonical** `json.dumps(..., indent=2)` + trailing newline.
   CI fails if `marketplace.json` doesn't match that exact formatting.
 - **Plugin `name`s must be unique** across the catalog.
@@ -35,14 +41,17 @@ Commit messages on `main`:
 - It opens a release PR that bumps `metadata.version` +
   `.release-please-manifest.json` and updates `CHANGELOG.md`. Merging that PR
   tags `v<version>` and cuts a GitHub Release.
-- `ready-to-merge` arms auto-merge (lands when `ci-gated` is green); auto-review
-  adds it on a `pass`/`warn` verdict, or add it yourself to override a `fail`.
-  Add `release-ready` to a release-please PR to run CI/review and ship it.
+- `ready-to-merge` arms auto-merge (lands when `ci-gated` is green); only
+  auto-review adds it, on a `pass`/`warn` verdict. Never add it yourself — not
+  to override a `fail`, not to ship a `warn` early. Adding `release-ready` to a
+  release-please PR starts CI/review; the pipeline arms it on a pass.
 
 ## CI
 
 `ci.yml` (job `ci`, check context `ci-gated`, the required status check in the
-branch ruleset) runs `scripts/validate.py` and the formatting check. No build,
+branch ruleset) runs the script tests (`python3 -m unittest discover -s tests -t .`),
+`scripts/validate.py` (which also fails if `metadata.version` drifts from
+`.release-please-manifest.json`) and the formatting check. No build,
 no Node — Python only.
 
 <!-- pr-workflow:v3 -->

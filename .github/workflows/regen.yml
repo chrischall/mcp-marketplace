@@ -8,14 +8,17 @@ name: regen
 # other. When main is already current, a still-open regen PR is closed
 # (its plugin versions are stale) -- see scripts/regen-pr.sh.
 #
-# RELEASE_PAT (not GITHUB_TOKEN) is used because:
-#   - regen.py must list and read the account's private repos too, which this
-#     repo's GITHUB_TOKEN cannot see; and
-#   - GitHub suppresses workflow runs for events GITHUB_TOKEN triggers, so a PR
-#     it opened would never get ci / pr-auto-review.
-# A plugin that drops out of the catalog (repo deleted, archived, manifest
-# removed, or not visible to the token) fails the run instead of silently
-# shrinking the catalog; run regen.py locally with --allow-removal if intended.
+# This catalog is PUBLIC, so regen.py lists only PUBLIC repos: a private repo
+# (unless named in regen.py's PRIVATE_ALLOWLIST, which ships empty) is never
+# read, and a listed plugin whose repo went private is dropped rather than
+# disclosed (chrischall/fleet-audit#1054).
+#
+# RELEASE_PAT (not GITHUB_TOKEN) is used because GitHub suppresses workflow
+# runs for events GITHUB_TOKEN triggers, so a PR it opened would never get
+# ci / pr-auto-review. It is not needed to read private repos: none are read.
+# A plugin that drops out of the catalog for any other reason (repo deleted,
+# archived, or manifest removed) fails the run instead of silently shrinking
+# the catalog; run regen.py locally with --allow-removal if intended.
 
 on:
   schedule:

@@ -8,11 +8,14 @@ referenced by its own GitHub source repo. It contains no application code.
 
 - **`.claude-plugin/marketplace.json` is generated, not hand-edited.** It is
   produced by `scripts/regen.py`, which lists the `chrischall` GitHub repos
-  (archived skipped; forks only via `INCLUDE_FORKS`), reads each one's
+  (**public repos only** — the catalog is public, so private repos are skipped
+  and never read unless named in `PRIVATE_ALLOWLIST`, which ships empty;
+  archived skipped; forks only via `INCLUDE_FORKS`), reads each one's
   `.claude-plugin/marketplace.json` **from its default branch on GitHub** (via
   `gh`, never from local clones), and rewrites each `source` to a GitHub source
   (`git-subdir` for monorepo subpackages like `gogcli-mcp`). A listed plugin
-  that disappears fails the run unless passed as `--allow-removal <name>`. To
+  that disappears fails the run unless passed as `--allow-removal <name>`
+  (one whose repo went private is dropped without failing). To
   change the catalog, merge the change in the source repo, then run
   `python3 scripts/regen.py` and commit the result — or let `regen.yml`
   (daily + `workflow_dispatch`, via `RELEASE_PAT`) open the

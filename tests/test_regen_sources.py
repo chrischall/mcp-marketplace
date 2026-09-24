@@ -30,8 +30,8 @@ class FakeSource:
         return self.files[(repo, path)]
 
 
-def repo(name, fork=False, archived=False):
-    return {"name": name, "isFork": fork, "isArchived": archived}
+def repo(name, fork=False, archived=False, visibility="PUBLIC"):
+    return {"name": name, "isFork": fork, "isArchived": archived, "visibility": visibility}
 
 
 class Collect(unittest.TestCase):
@@ -64,6 +64,48 @@ class Collect(unittest.TestCase):
              ("x-mcp", ".claude-plugin/marketplace.json"): manifest("x")})
         self.assertEqual(sorted(p["name"] for p in regen.collect(src)), ["apple-mail", "x"])
 
+    def test_skips_private_and_internal_repos(self):
+        # The catalog is public: a private repo's manifest must not leak its
+        # existence, description or version into it (fleet-audit#1054, #550).
+        src = FakeSource(
+            [repo("pub-mcp"), repo("secret-mcp", visibility="PRIVATE"),
+             repo("corp-mcp", visibility="INTERNAL")],
+            {("pub-mcp", ".claude-plugin/marketplace.json"): manifest("pub"),
+             ("secret-mcp", ".claude-plugin/marketplace.json"): manifest("secret"),
+             ("corp-mcp", ".claude-plugin/marketplace.json"): manifest("corp")})
+        self.assertEqual([p["name"] for p in regen.collect(src)], ["pub"])
+
+    def test_private_repo_is_never_even_read(self):
+        read = []
+
+        class Spy(FakeSource):
+            def manifest_paths(self, r):
+                read.append(r)
+                return super().manifest_paths(r)
+        src = Spy([repo("secret-mcp", visibility="PRIVATE")],
+                  {("secret-mcp", ".claude-plugin/marketplace.json"): manifest("secret")})
+        regen.collect(src)
+        self.assertEqual(read, [])
+
+    def test_missing_visibility_is_treated_as_private(self):
+        r = repo("unknown-mcp")
+        del r["visibility"]
+        src = FakeSource([r], {("unknown-mcp", ".claude-plugin/marketplace.json"): manifest("u")})
+        self.assertEqual(regen.collect(src), [])
+
+    def test_private_allowlist_opts_a_private_repo_in(self):
+        src = FakeSource([repo("secret-mcp", visibility="PRIVATE")],
+                         {("secret-mcp", ".claude-plugin/marketplace.json"): manifest("secret")})
+        orig = regen.PRIVATE_ALLOWLIST
+        regen.PRIVATE_ALLOWLIST = {"secret-mcp"}
+        try:
+            self.assertEqual([p["name"] for p in regen.collect(src)], ["secret"])
+        finally:
+            regen.PRIVATE_ALLOWLIST = orig
+
+    def test_private_allowlist_ships_empty(self):
+        self.assertEqual(regen.PRIVATE_ALLOWLIST, set())
+
 
 class Removals(unittest.TestCase):
     def run_main(self, previous_names, source, argv=()):
@@ -72,7 +114,8 @@ class Removals(unittest.TestCase):
             (root / ".claude-plugin").mkdir()
             (root / ".release-please-manifest.json").write_text('{".": "1.0.4"}')
             out = root / ".claude-plugin" / "marketplace.json"
-            out.write_text(json.dumps({"plugins": [{"name": n} for n in previous_names]}))
+            out.write_text(json.dumps({"plugins": [n if isinstance(n, dict) else {"name": n}
+                                                   for n in previous_names]}))
             regen.main(list(argv), source=source, root=str(root))
             return json.loads(out.read_text())
 
@@ -87,6 +130,23 @@ class Removals(unittest.TestCase):
         got = self.run_main(["x", "apple-mail"], src, ["--allow-removal", "apple-mail"])
         self.assertEqual([p["name"] for p in got["plugins"]], ["x"])
         self.assertEqual(got["metadata"]["version"], "1.0.4")
+
+    def test_plugin_whose_repo_went_private_drops_out_without_failing(self):
+        # Going private is a deliberate exclusion, not a vanished repo.
+        src = FakeSource([repo("x-mcp"), repo("secret-mcp", visibility="PRIVATE")],
+                         {("x-mcp", ".claude-plugin/marketplace.json"): manifest("x"),
+                          ("secret-mcp", ".claude-plugin/marketplace.json"): manifest("secret")})
+        secret = {"name": "secret", "source": {"source": "github", "repo": "chrischall/secret-mcp"}}
+        got = self.run_main(["x", secret], src)
+        self.assertEqual([p["name"] for p in got["plugins"]], ["x"])
+
+    def test_private_monorepo_subpackage_drops_out_without_failing(self):
+        src = FakeSource([repo("x-mcp"), repo("mono", visibility="PRIVATE")],
+                         {("x-mcp", ".claude-plugin/marketplace.json"): manifest("x")})
+        sub = {"name": "sub", "source": {"source": "git-subdir",
+                                         "url": "https://github.com/chrischall/mono.git", "path": "p/sub"}}
+        got = self.run_main(["x", sub], src)
+        self.assertEqual([p["name"] for p in got["plugins"]], ["x"])
 
 
 class GitHubSource(unittest.TestCase):
@@ -105,6 +165,8 @@ class GitHubSource(unittest.TestCase):
         gh, calls = self.make({"repo list": json.dumps([repo("a-mcp")])})
         self.assertEqual(gh.list_repos(), [repo("a-mcp")])
         self.assertEqual(calls[0][:3], ["repo", "list", "chrischall"])
+        json_fields = calls[0][calls[0].index("--json") + 1].split(",")
+        self.assertIn("visibility", json_fields)
 
     def test_manifest_paths_come_from_the_default_branch_tree(self):
         tree = {"truncated": False, "tree": [

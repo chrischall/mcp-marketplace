@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Regenerate .claude-plugin/marketplace.json from the chrischall GitHub repos.
 
-The repo list is the chrischall GitHub account (archived repos skipped; forks
-only when listed in INCLUDE_FORKS), and every manifest is read from the repo's
+The repo list is the chrischall GitHub account's PUBLIC repos (archived repos
+skipped; forks only when listed in INCLUDE_FORKS; private/internal repos only
+when listed in PRIVATE_ALLOWLIST, and otherwise never even read), and every manifest is read from the repo's
 DEFAULT BRANCH on GitHub. Nothing is read from local clones: they may sit on an
 unmerged branch, and a repo that isn't cloned would silently drop out.
 
@@ -12,7 +13,9 @@ source for monorepo subpackages). metadata.version is carried from
 .release-please-manifest.json, which release-please owns.
 
 A plugin that was in the catalog but is no longer found fails the run; pass
-`--allow-removal <name>` (repeatable) when the removal is intended.
+`--allow-removal <name>` (repeatable) when the removal is intended. A plugin
+whose repo is now private is dropped without failing: that exclusion is the
+point, not an accident.
 
 Needs an authenticated `gh` CLI. Run: python3 scripts/regen.py
 """
@@ -27,6 +30,12 @@ MANIFEST = ".claude-plugin/marketplace.json"
 # Forks are usually upstream projects whose own manifest isn't ours to publish.
 # These forks are maintained here and ship a chrischall plugin.
 INCLUDE_FORKS = {"apple-mail-mcp"}
+# This catalog is PUBLIC. A private repo listed here would disclose its
+# existence, description, version cadence and source URL, and offer an install
+# that fails for everyone but the owner (chrischall/fleet-audit#550, #1054).
+# Private/internal repos are skipped unless named here. Keep it empty; make a
+# repo public instead of adding it.
+PRIVATE_ALLOWLIST = set()
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
 
@@ -46,7 +55,7 @@ class GitHub:
 
     def list_repos(self):
         return json.loads(self.run(["repo", "list", self.owner, "--limit", "1000",
-                                    "--json", "name,isFork,isArchived"]))
+                                    "--json", "name,isFork,isArchived,visibility"]))
 
     def manifest_paths(self, repo):
         tree = json.loads(self.run(["api", f"repos/{self.owner}/{repo}/git/trees/HEAD?recursive=1"]))
@@ -80,13 +89,24 @@ def plugin_entry(repo, rel, data, owner=OWNER):
     return entry
 
 
-def collect(source):
+def is_listable(r):
+    """Public repos only (a missing visibility counts as private), unless allowlisted."""
+    return r.get("visibility") == "PUBLIC" or r["name"] in PRIVATE_ALLOWLIST
+
+
+def collect(source, skipped_private=None):
+    """Plugin entries from every listable repo. Names of repos skipped for being
+    private are added to `skipped_private` (a set) when given."""
     plugins = []
     for r in sorted(source.list_repos(), key=lambda r: r["name"]):
         name = r["name"]
         if name == SELF or r.get("isArchived"):
             continue
         if r.get("isFork") and name not in INCLUDE_FORKS:
+            continue
+        if not is_listable(r):
+            if skipped_private is not None:
+                skipped_private.add(name)
             continue
         for path in source.manifest_paths(name):
             if "node_modules/" in path:
@@ -96,6 +116,14 @@ def collect(source):
             if entry:
                 plugins.append(entry)
     return plugins
+
+
+def source_repo(entry):
+    """The repo name a catalog entry's `source` points at, or None."""
+    s = entry.get("source") or {}
+    loc = s.get("repo") or s.get("url") or ""
+    name = loc.rstrip("/").rsplit("/", 1)[-1]
+    return name.removesuffix(".git") or None
 
 
 def catalog_version(root=ROOT):
@@ -155,12 +183,17 @@ def main(argv=None, source=None, root=ROOT):
 
     try:
         with open(out) as f:
-            previous = {p["name"] for p in json.load(f).get("plugins", [])}
+            previous = {p["name"]: source_repo(p) for p in json.load(f).get("plugins", [])}
     except FileNotFoundError:
-        previous = set()
+        previous = {}
 
-    plugins = collect(source or GitHub())
-    gone = sorted(previous - {p["name"] for p in plugins} - set(args.allow_removal))
+    private = set()
+    plugins = collect(source or GitHub(), private)
+    now_private = {n for n, r in previous.items() if r in private}
+    for n in sorted(now_private):
+        print(f"Dropping {n}: its source repo is not public")
+    gone = sorted(set(previous) - {p["name"] for p in plugins} - now_private
+                  - set(args.allow_removal))
     if gone:
         raise SystemExit(
             f"These listed plugins were not found on any default branch: {', '.join(gone)}. "

@@ -149,36 +149,6 @@
       "repository": "https://github.com/chrischall/apple-mail-mcp"
     },
     {
-      "name": "apple-swift-mcp",
-      "displayName": "Apple (Swift)",
-      "source": {
-        "source": "github",
-        "repo": "chrischall/apple-swift-mcp"
-      },
-      "description": "Native Swift MCP server for Apple apps — EventKit/Contacts/MapKit first-party, AppleScript-backed Mail/Messages/Notes, PhotoKit+AppleScript Photos. Requires macOS 14+ Apple Silicon.",
-      "version": "1.8.3",
-      "author": {
-        "name": "Chris Hall"
-      },
-      "homepage": "https://github.com/chrischall/apple-swift-mcp",
-      "repository": "https://github.com/chrischall/apple-swift-mcp",
-      "license": "MIT",
-      "keywords": [
-        "apple",
-        "macos",
-        "swift",
-        "eventkit",
-        "contacts",
-        "mapkit",
-        "mail",
-        "messages",
-        "notes",
-        "photos",
-        "mcp"
-      ],
-      "category": "productivity"
-    },
-    {
       "name": "artsonia-mcp",
       "displayName": "Artsonia",
       "source": {
@@ -958,30 +928,6 @@
         "office365",
         "microsoft365",
         "chat",
-        "mcp"
-      ],
-      "category": "productivity"
-    },
-    {
-      "name": "musescore-mcp",
-      "displayName": "MuseScore",
-      "source": {
-        "source": "github",
-        "repo": "chrischall/musescore-mcp"
-      },
-      "description": "MCP server for MuseScore — search sheet music and read score metadata via your signed-in browser",
-      "version": "1.1.2",
-      "author": {
-        "name": "Chris Hall"
-      },
-      "homepage": "https://github.com/chrischall/musescore-mcp",
-      "repository": "https://github.com/chrischall/musescore-mcp",
-      "license": "MIT",
-      "keywords": [
-        "musescore",
-        "sheet-music",
-        "scores",
-        "music",
         "mcp"
       ],
       "category": "productivity"

@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (71)
+## Servers (69)
 
 ### data
 
@@ -59,7 +59,6 @@ claude plugin install zillow-mcp@chrischall
 - **[Angi](https://github.com/chrischall/angi-mcp)** (`angi-mcp`) — MCP server for Angi — find home-service pros, read ratings and reviews
 - **[App Store Connect](https://github.com/chrischall/app-store-connect-mcp)** (`app-store-connect`) — App Store Connect tools for Claude — apps, TestFlight, customer reviews, sales/finance reports, and team users via MCP
 - **[apple-mail](https://github.com/chrischall/apple-mail-mcp)** (`apple-mail`) — Manage Apple Mail through natural language - read, search, send, and organize emails
-- **[Apple (Swift)](https://github.com/chrischall/apple-swift-mcp)** (`apple-swift-mcp`) — Native Swift MCP server for Apple apps — EventKit/Contacts/MapKit first-party, AppleScript-backed Mail/Messages/Notes, PhotoKit+AppleScript Photos. Requires macOS 14+ Apple Silicon.
 - **[Booli](https://github.com/chrischall/booli-mcp)** (`booli`) — Booli.se real estate tools for Claude — search listings, sold prices, areas, and market stats via MCP
 - **[Canvas LMS](https://github.com/chrischall/canvas-parent-mcp)** (`canvas-parent-mcp`) — Canvas LMS (Instructure) MCP server for Claude — student/observer access via natural language
 - **[Compass](https://github.com/chrischall/compass-mcp)** (`compass-mcp`) — MCP server for Compass — search listings, get property details, market reports, saved homes
@@ -82,7 +81,6 @@ claude plugin install zillow-mcp@chrischall
 - **[ioffice-mcp](https://github.com/chrischall/ioffice-mcp)** (`ioffice-mcp`) — MCP server for iOffice — manage buildings, spaces, reservations, visitors, and more via natural language
 - **[Jobber Client Hub](https://github.com/chrischall/jobber-mcp)** (`jobber`) — Read the Jobber Client Hub your home-service providers share with you — appointments, invoices, quotes and requests — via MCP
 - **[Microsoft Teams](https://github.com/chrischall/microsoft-teams-mcp)** (`microsoft-teams-mcp`) — MCP server for Microsoft Teams — read your chats, teams, channels, and their currently open messages, via your signed-in browser session
-- **[MuseScore](https://github.com/chrischall/musescore-mcp)** (`musescore-mcp`) — MCP server for MuseScore — search sheet music and read score metadata via your signed-in browser
 - **[MyAtriumHealth](https://github.com/chrischall/myatriumhealth-mcp)** (`myatriumhealth-mcp`) — Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the fetchproxy bridge.
 - **[My Hot Lunchbox](https://github.com/chrischall/myhotlunchbox-mcp)** (`myhotlunchbox-mcp`) — MCP server for My Hot Lunchbox — school lunch calendar, ordering, and payments. Signs in server-side with the parent account credentials.
 - **[Outlook (Microsoft 365)](https://github.com/chrischall/office-outlook-mcp)** (`office-outlook-mcp`) — MCP server for Outlook / Microsoft 365 — read mail, folders, calendar, contacts and tasks, and send mail with confirmation

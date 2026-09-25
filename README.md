@@ -46,7 +46,7 @@ claude plugin install zillow-mcp@chrischall
 ### other
 
 - **[housecallpro](https://github.com/chrischall/housecallpro-mcp)** (`housecallpro`) — Reads the customer-side Housecall Pro portal over plain HTTPS using the per-document retrieval link your contractor sent you.
-- **[kiaaccess](https://github.com/chrischall/kiaaccess-mcp)** (`kiaaccess`) — Vehicle status, location, odometer, EV charge state, and confirm-gated door, climate, and charging commands
+- **[kiaaccess](https://github.com/chrischall/kiaaccess-mcp)** (`kiaaccess`) — Vehicle status, location, odometer, EV charge state, and confirmation-gated door, climate, and charging commands
 - **[remind-mcp](https://github.com/chrischall/remind-mcp)** (`remind-mcp`) — Read Remind classes, chats and messages.
 - **[schoolpass](https://github.com/chrischall/schoolpass-mcp)** (`schoolpass`) — Students, arrival/dismissal calendar, pending pickup changes, authorized drivers, dismissal locations, and school info for a parent account
 - **[simplepractice](https://github.com/chrischall/simplepractice-mcp)** (`simplepractice`) — Read a SimplePractice Client Portal — appointments, invoices and superbills, documents to sign, and practice announcements. Signs in with the portal's own passwordless emailed link; requests go straight to the portal's JSON:API over your own session.

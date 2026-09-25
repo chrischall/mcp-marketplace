@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.6](https://github.com/chrischall/mcp-marketplace/compare/v1.0.5...v1.0.6) (2026-09-25)
+
+
+### Bug Fixes
+
+* **catalog:** stop publishing private repos in the public marketplace ([#38](https://github.com/chrischall/mcp-marketplace/issues/38)) ([c66fd3f](https://github.com/chrischall/mcp-marketplace/commit/c66fd3f91b210172d8b3f70facd1d51597da84f6))
+* refresh the plugin catalog from the source repos ([#35](https://github.com/chrischall/mcp-marketplace/issues/35)) ([139078c](https://github.com/chrischall/mcp-marketplace/commit/139078c9ffac4c07fc7c9827c57a82f7aa1f8f33))
+* refresh the plugin catalog from the source repos ([#39](https://github.com/chrischall/mcp-marketplace/issues/39)) ([5f91d5a](https://github.com/chrischall/mcp-marketplace/commit/5f91d5a65a8187ecec5373e72895b5d5d2ed0eea))
+
 ## [1.0.5](https://github.com/chrischall/mcp-marketplace/compare/v1.0.4...v1.0.5) (2026-09-23)
 
 

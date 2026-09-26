@@ -17,7 +17,7 @@
         "repo": "chrischall/accessoticketing-mcp"
       },
       "description": "Reads accesso Passport mobile-ticket links (the URL a venue emails after a purchase) and returns the order, its admissions, the barcode images and Google Wallet save links. The emailed link is the only credential; no account sign-in is involved.",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "author": {
         "name": "Claude Code (AI)",
         "url": "https://www.anthropic.com/claude"
@@ -42,7 +42,7 @@
         "repo": "chrischall/alltrails-mcp"
       },
       "description": "Unofficial AllTrails tools for Claude — search trails, get details, reviews, photos, and saved lists via MCP",
-      "version": "3.1.2",
+      "version": "3.1.3",
       "author": {
         "name": "Chris Chall"
       },
@@ -66,7 +66,7 @@
         "repo": "chrischall/alphaportal-mcp"
       },
       "description": "MCP server for AlphaPortal school-bus transportation — students, stops, live bus location, and notifications via natural language",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -113,7 +113,7 @@
         "repo": "chrischall/app-store-connect-mcp"
       },
       "description": "App Store Connect tools for Claude — apps, TestFlight, customer reviews, sales/finance reports, and team users via MCP",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Chall"
       },
@@ -156,7 +156,7 @@
         "repo": "chrischall/artsonia-mcp"
       },
       "description": "MCP server for Artsonia — access student portfolios, post comments, and manage fans via natural language",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -204,7 +204,7 @@
         "repo": "chrischall/canvas-parent-mcp"
       },
       "description": "Canvas LMS (Instructure) MCP server for Claude — student/observer access via natural language",
-      "version": "2.1.3",
+      "version": "2.1.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -231,7 +231,7 @@
         "repo": "chrischall/compass-mcp"
       },
       "description": "MCP server for Compass — search listings, get property details, market reports, saved homes",
-      "version": "1.1.3",
+      "version": "1.1.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -255,7 +255,7 @@
         "repo": "chrischall/creditkarma-mcp"
       },
       "description": "MCP server for Credit Karma — sync and query your transactions, spending, and accounts via natural language",
-      "version": "3.1.2",
+      "version": "3.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -279,7 +279,7 @@
         "repo": "chrischall/crowntowncompost-mcp"
       },
       "description": "MCP server for the Crown Town Compost customer portal — view pickups and invoices, skip a service, and report a missed collection. Authenticates server-side with a session cookie you already hold, or your own portal username and password.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -350,7 +350,7 @@
         "repo": "chrischall/eventbrite-mcp"
       },
       "description": "MCP server for Eventbrite — tickets, orders, organizer data, and public event search. Account tools use a personal API token; discovery search routes through the user's signed-in eventbrite.com tab via the fetchproxy bridge, reusing their authenticated session.",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -373,7 +373,7 @@
         "repo": "chrischall/evite-mcp"
       },
       "description": "Evite tools for Claude — list events, guest lists & RSVPs, RSVP, message guests, and create/edit events via MCP",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "author": {
         "name": "Chris Chall"
       },
@@ -397,7 +397,7 @@
         "repo": "chrischall/flightaware-mcp"
       },
       "description": "Live flight tracking and aviation data via FlightAware AeroAPI — flights, airports, operators, schedules, and alerts",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -423,7 +423,7 @@
         "repo": "chrischall/freshbooks-mcp"
       },
       "description": "MCP server for FreshBooks — manage invoices, clients, estimates, and payments via natural language",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -446,7 +446,7 @@
         "repo": "chrischall/gemini-mcp"
       },
       "description": "Generate and edit images with Google Gemini image models (Nano Banana / Nano Banana Pro) via natural language prompts",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -472,7 +472,7 @@
         "repo": "chrischall/getyourguide-mcp"
       },
       "description": "GetYourGuide tours and activities for Claude — search, details, options, and reviews via MCP",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "author": {
         "name": "Chris Chall"
       },
@@ -497,7 +497,7 @@
         "path": "packages/gogcli-mcp"
       },
       "description": "Google Sheets (and more) for Claude via gogcli — read, write, and manage spreadsheets",
-      "version": "4.5.0",
+      "version": "4.5.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -525,7 +525,7 @@
         "path": "packages/gogcli-mcp-classroom"
       },
       "description": "Extended Google Classroom for Claude via gogcli — auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)",
-      "version": "4.5.0",
+      "version": "4.5.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -555,7 +555,7 @@
         "path": "packages/gogcli-mcp-docs"
       },
       "description": "Extended Google Docs for Claude via gogcli — auth + full Docs and comments support",
-      "version": "4.5.0",
+      "version": "4.5.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -582,7 +582,7 @@
         "path": "packages/gogcli-mcp-drive"
       },
       "description": "Extended Google Drive for Claude via gogcli — auth + full Drive support (upload, download, permissions, comments, shared drives)",
-      "version": "4.5.0",
+      "version": "4.5.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -611,7 +611,7 @@
         "path": "packages/gogcli-mcp-sheets"
       },
       "description": "Extended Google Sheets for Claude via gogcli — auth + full Sheets support",
-      "version": "4.5.0",
+      "version": "4.5.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -639,7 +639,7 @@
         "path": "packages/gogcli-mcp-slides"
       },
       "description": "Extended Google Slides for Claude via gogcli — auth + full Slides support (create, edit, export, templates, markdown)",
-      "version": "4.5.0",
+      "version": "4.5.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -667,7 +667,7 @@
         "repo": "chrischall/groupon-mcp"
       },
       "description": "MCP server for Groupon — search and browse local, goods, and travel deals via natural language",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -690,7 +690,7 @@
         "repo": "chrischall/hemnet-mcp"
       },
       "description": "Hemnet.se real estate tools for Claude — search, sold prices, listings, and market stats via MCP",
-      "version": "1.1.4",
+      "version": "1.1.5",
       "author": {
         "name": "Chris Chall"
       },
@@ -715,7 +715,7 @@
         "repo": "chrischall/homes-mcp"
       },
       "description": "MCP server for homes.com — search listings, get property details, photo galleries, compare properties",
-      "version": "2.1.4",
+      "version": "2.1.5",
       "author": {
         "name": "Chris Hall"
       },
@@ -739,7 +739,7 @@
         "repo": "chrischall/honeybook-mcp"
       },
       "description": "HoneyBook client-portal MCP for Claude — view wedding-vendor contracts and invoices via MCP",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Chall"
       },
@@ -784,7 +784,7 @@
         "repo": "chrischall/infinitecampus-mcp"
       },
       "description": "Infinite Campus (Campus Parent) MCP server for Claude — grades, attendance, assignments, messages, and documents via natural language",
-      "version": "3.1.3",
+      "version": "3.1.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -808,7 +808,7 @@
         "repo": "chrischall/ioffice-mcp"
       },
       "description": "MCP server for iOffice — manage buildings, spaces, reservations, visitors, and more via natural language",
-      "version": "3.2.0",
+      "version": "3.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -867,7 +867,7 @@
         "repo": "chrischall/kiaaccess-mcp"
       },
       "description": "Vehicle status, location, odometer, EV charge state, and confirmation-gated door, climate, and charging commands",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Chris Chall"
       },
@@ -891,7 +891,7 @@
         "repo": "chrischall/maxpreps-mcp"
       },
       "description": "MCP server for MaxPreps — read any US high school's team schedules, scores, records, rosters, stat leaders and athlete careers. Reads the site's public server-rendered data; no account or API key.",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -915,7 +915,7 @@
         "repo": "chrischall/microsoft-teams-mcp"
       },
       "description": "MCP server for Microsoft Teams — read your chats, teams, channels, and their currently open messages, via your signed-in browser session",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -940,7 +940,7 @@
         "repo": "chrischall/musicbrainz-mcp"
       },
       "description": "MCP server for MusicBrainz — search/browse music metadata, fetch cover art, and submit tags, ratings, and collections",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -963,7 +963,7 @@
         "repo": "chrischall/myatriumhealth-mcp"
       },
       "description": "Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the fetchproxy bridge.",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -987,7 +987,7 @@
         "repo": "chrischall/myersparkathleticzone-mcp"
       },
       "description": "MCP server for Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links. Reads the public site's server-rendered pages; no account or credentials required.",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1011,7 +1011,7 @@
         "repo": "chrischall/myhotlunchbox-mcp"
       },
       "description": "MCP server for My Hot Lunchbox — school lunch calendar, ordering, and payments. Signs in server-side with the parent account credentials.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1035,7 +1035,7 @@
         "repo": "chrischall/office-outlook-mcp"
       },
       "description": "MCP server for Outlook / Microsoft 365 — read mail, folders, calendar, contacts and tasks, and send mail with confirmation",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1060,7 +1060,7 @@
         "repo": "chrischall/ofw-mcp"
       },
       "description": "OurFamilyWizard co-parenting tools for Claude — messages, calendar, expenses, and journal via MCP",
-      "version": "2.19.3",
+      "version": "2.19.4",
       "author": {
         "name": "Chris Chall"
       },
@@ -1084,7 +1084,7 @@
         "repo": "chrischall/onehome-mcp"
       },
       "description": "MCP server for OneHome (CoreLogic) — search listings, get property details, photos, schools, saved searches",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1109,7 +1109,7 @@
         "repo": "chrischall/onthecheap-mcp"
       },
       "description": "MCP server for the On the Cheap network — daily event listings with times, prices and venues, plus searchable deals and local guides for 14 US cities",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1133,7 +1133,7 @@
         "repo": "chrischall/opentable-mcp"
       },
       "description": "OpenTable reservation management for Claude — relays through a companion Chrome extension in your signed-in opentable.com tab.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1158,7 +1158,7 @@
         "repo": "chrischall/pickuppatrol-mcp"
       },
       "description": "Read and change your children's school dismissal plans in PickUp Patrol — defaults, day-by-day changes and school cutoff times — via MCP",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Chris Chall"
       },
@@ -1183,7 +1183,7 @@
         "repo": "chrischall/redfin-mcp"
       },
       "description": "MCP server for Redfin — search listings, get property details, market reports, saved homes",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1206,7 +1206,7 @@
         "repo": "chrischall/remind-mcp"
       },
       "description": "Read Remind classes, chats and messages.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "homepage": "https://github.com/chrischall/remind-mcp",
       "repository": "https://github.com/chrischall/remind-mcp"
     },
@@ -1218,7 +1218,7 @@
         "repo": "chrischall/resy-mcp"
       },
       "description": "MCP server for Resy — search restaurants, book tables, manage reservations, favorites, and Priority Notify via natural language",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1242,7 +1242,7 @@
         "repo": "chrischall/schoolpass-mcp"
       },
       "description": "Students, arrival/dismissal calendar, pending pickup changes, authorized drivers, dismissal locations, and school info for a parent account",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": {
         "name": "Chris Chall"
       },
@@ -1266,7 +1266,7 @@
         "repo": "chrischall/setlist-mcp"
       },
       "description": "MCP server for setlist.fm — search concert setlists, artists, venues, and tours via natural language",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1289,7 +1289,7 @@
         "repo": "chrischall/signupgenius-mcp"
       },
       "description": "SignUpGenius MCP server for Claude — sign-ups, slot reports, and groups via natural language. Free or Pro accounts.",
-      "version": "2.1.3",
+      "version": "2.1.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -1311,7 +1311,7 @@
         "repo": "chrischall/simplepractice-mcp"
       },
       "description": "Read a SimplePractice Client Portal — appointments, invoices and superbills, documents to sign, and practice announcements. Signs in with the portal's own passwordless emailed link; requests go straight to the portal's JSON:API over your own session.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Chall",
         "url": "https://github.com/chrischall"
@@ -1335,7 +1335,7 @@
         "repo": "chrischall/simplisafe-mcp"
       },
       "description": "MCP server for SimpliSafe — check system state and sensors, review events, arm/disarm, control smart locks",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1358,7 +1358,7 @@
         "repo": "chrischall/sixflags-mcp"
       },
       "description": "Six Flags tools for Claude — live wait times, park hours, shows, and day planning for Carowinds and the whole chain",
-      "version": "2.1.2",
+      "version": "2.1.3",
       "author": {
         "name": "Chris Chall"
       },
@@ -1405,7 +1405,7 @@
         "repo": "chrischall/skylight-mcp"
       },
       "description": "Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1429,7 +1429,7 @@
         "repo": "chrischall/splitwise-mcp"
       },
       "description": "MCP server for Splitwise — manage expenses, groups, and friends via natural language",
-      "version": "3.2.0",
+      "version": "3.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1451,7 +1451,7 @@
         "repo": "chrischall/tempo-api-mcp"
       },
       "description": "MCP server for Tempo — manage worklogs, plans, teams, accounts, and projects via natural language",
-      "version": "3.2.0",
+      "version": "3.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1486,7 +1486,7 @@
         "repo": "chrischall/thumbtack-mcp"
       },
       "description": "Unofficial Thumbtack tools for Claude — search local service pros, read profiles, ratings and reviews via MCP",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Chall"
       },
@@ -1510,7 +1510,7 @@
         "repo": "chrischall/tock-mcp"
       },
       "description": "Tock (exploretock.com) restaurant discovery for Claude — relays through a companion Chrome extension in your signed-in exploretock.com tab.",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1535,7 +1535,7 @@
         "repo": "chrischall/tripadvisor-mcp"
       },
       "description": "TripAdvisor travel data via the Terra API — search hotels, restaurants, and attractions, with details, photos, and reviews",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1561,7 +1561,7 @@
         "repo": "chrischall/untappd-mcp"
       },
       "description": "MCP server for Untappd — search beers/breweries/venues, read profiles/check-ins/wishlists, and post check-ins, toasts, and comments",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1585,7 +1585,7 @@
         "repo": "chrischall/viator-mcp"
       },
       "description": "Search Viator tours, activities and experiences — products, pricing, availability schedules, attractions, and destinations via the Viator Partner API",
-      "version": "2.1.2",
+      "version": "2.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1611,7 +1611,7 @@
         "repo": "chrischall/vibo-mcp"
       },
       "description": "MCP server for Vibo — browse & manage events, timeline, songs, the DJ song ideas/questions, guests, and exports to Spotify/Apple Music",
-      "version": "2.3.0",
+      "version": "2.3.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1636,7 +1636,7 @@
         "repo": "chrischall/workday-mcp"
       },
       "description": "Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1660,7 +1660,7 @@
         "repo": "chrischall/zillow-mcp"
       },
       "description": "MCP server for Zillow — search listings, get property details, Zestimate history, saved searches & homes, market reports",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -1685,7 +1685,7 @@
         "repo": "chrischall/zola-mcp"
       },
       "description": "Zola wedding planning tools for Claude — vendors, budget, guests, seating, events, registry, inquiries, and more via MCP",
-      "version": "2.1.3",
+      "version": "2.1.4",
       "author": {
         "name": "Chris Chall"
       },

@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (69)
+## Servers (70)
 
 ### data
 
@@ -58,6 +58,7 @@ claude plugin install zillow-mcp@chrischall
 - **[AlphaPortal](https://github.com/chrischall/alphaportal-mcp)** (`alphaportal-mcp`) — MCP server for AlphaPortal school-bus transportation — students, stops, live bus location, and notifications via natural language
 - **[Angi](https://github.com/chrischall/angi-mcp)** (`angi-mcp`) — MCP server for Angi — find home-service pros, read ratings and reviews
 - **[App Store Connect](https://github.com/chrischall/app-store-connect-mcp)** (`app-store-connect`) — App Store Connect tools for Claude — apps, TestFlight, customer reviews, sales/finance reports, and team users via MCP
+- **[Apple iCloud](https://github.com/chrischall/apple-icloud-mcp)** (`apple-icloud`) — Apple Music playlists and library, iCloud Calendar, Contacts and Mail, Apple Maps, WeatherKit and iTunes search for Claude via MCP — runs anywhere, no Mac required. Unofficial; not affiliated with Apple.
 - **[apple-mail](https://github.com/chrischall/apple-mail-mcp)** (`apple-mail`) — Manage Apple Mail through natural language - read, search, send, and organize emails
 - **[Booli](https://github.com/chrischall/booli-mcp)** (`booli`) — Booli.se real estate tools for Claude — search listings, sold prices, areas, and market stats via MCP
 - **[Canvas LMS](https://github.com/chrischall/canvas-parent-mcp)** (`canvas-parent-mcp`) — Canvas LMS (Instructure) MCP server for Claude — student/observer access via natural language
@@ -65,7 +66,7 @@ claude plugin install zillow-mcp@chrischall
 - **[Crown Town Compost](https://github.com/chrischall/crowntowncompost-mcp)** (`crowntowncompost-mcp`) — MCP server for the Crown Town Compost customer portal — view pickups and invoices, skip a service, and report a missed collection. Authenticates server-side with a session cookie you already hold, or your own portal username and password.
 - **[easyTable](https://github.com/chrischall/easytable-mcp)** (`easytable-mcp`) — MCP server for easyTable — restaurant availability plus create/modify/cancel bookings
 - **[Etix](https://github.com/chrischall/etix-mcp)** (`etix-mcp`) — MCP server for Etix — search events, venues & performers and fetch event details
-- **[Eventbrite](https://github.com/chrischall/eventbrite-mcp)** (`eventbrite-mcp`) — MCP server for Eventbrite — tickets, orders, organizer data, and public event search. Account tools use a personal API token; discovery search routes through the user's signed-in eventbrite.com tab via the fetchproxy bridge, reusing their authenticated session.
+- **[Eventbrite](https://github.com/chrischall/eventbrite-mcp)** (`eventbrite-mcp`) — MCP server for Eventbrite — tickets, orders, organizer data, and public event search. Account tools use a personal API token; discovery search routes through the user's signed-in eventbrite.com tab via ContextMint Bridge (the fetchproxy browser extension), reusing their authenticated session.
 - **[Evite](https://github.com/chrischall/evite-mcp)** (`evite`) — Evite tools for Claude — list events, guest lists & RSVPs, RSVP, message guests, and create/edit events via MCP
 - **[GetYourGuide](https://github.com/chrischall/getyourguide-mcp)** (`getyourguide`) — GetYourGuide tours and activities for Claude — search, details, options, and reviews via MCP
 - **[gogcli](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp)** (`gogcli-mcp`) — Google Sheets (and more) for Claude via gogcli — read, write, and manage spreadsheets
@@ -81,7 +82,7 @@ claude plugin install zillow-mcp@chrischall
 - **[ioffice-mcp](https://github.com/chrischall/ioffice-mcp)** (`ioffice-mcp`) — MCP server for iOffice — manage buildings, spaces, reservations, visitors, and more via natural language
 - **[Jobber Client Hub](https://github.com/chrischall/jobber-mcp)** (`jobber`) — Read the Jobber Client Hub your home-service providers share with you — appointments, invoices, quotes and requests — via MCP
 - **[Microsoft Teams](https://github.com/chrischall/microsoft-teams-mcp)** (`microsoft-teams-mcp`) — MCP server for Microsoft Teams — read your chats, teams, channels, and their currently open messages, via your signed-in browser session
-- **[MyAtriumHealth](https://github.com/chrischall/myatriumhealth-mcp)** (`myatriumhealth-mcp`) — Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the fetchproxy bridge.
+- **[MyAtriumHealth](https://github.com/chrischall/myatriumhealth-mcp)** (`myatriumhealth-mcp`) — Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the ContextMint Bridge extension.
 - **[My Hot Lunchbox](https://github.com/chrischall/myhotlunchbox-mcp)** (`myhotlunchbox-mcp`) — MCP server for My Hot Lunchbox — school lunch calendar, ordering, and payments. Signs in server-side with the parent account credentials.
 - **[Outlook (Microsoft 365)](https://github.com/chrischall/office-outlook-mcp)** (`office-outlook-mcp`) — MCP server for Outlook / Microsoft 365 — read mail, folders, calendar, contacts and tasks, and send mail with confirmation
 - **[OurFamilyWizard](https://github.com/chrischall/ofw-mcp)** (`ofw`) — OurFamilyWizard co-parenting tools for Claude — messages, calendar, expenses, and journal via MCP

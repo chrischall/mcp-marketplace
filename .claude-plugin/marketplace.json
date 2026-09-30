@@ -140,7 +140,7 @@
         "repo": "chrischall/apple-icloud-mcp"
       },
       "description": "Apple Music playlists and library, iCloud Calendar, Contacts and Mail, Apple Maps, WeatherKit and iTunes search for Claude via MCP — runs anywhere, no Mac required. Unofficial; not affiliated with Apple.",
-      "version": "0.2.1",
+      "version": "0.3.0",
       "author": {
         "name": "Chris Chall"
       },
@@ -451,7 +451,7 @@
         "repo": "chrischall/freshbooks-mcp"
       },
       "description": "MCP server for FreshBooks — manage invoices, clients, estimates, and payments via natural language",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": {
         "name": "Chris Hall"
       },

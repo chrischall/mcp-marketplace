@@ -425,7 +425,7 @@
         "repo": "chrischall/flightaware-mcp"
       },
       "description": "Live flight tracking and aviation data via FlightAware AeroAPI — flights, airports, operators, schedules, and alerts",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -451,7 +451,7 @@
         "repo": "chrischall/freshbooks-mcp"
       },
       "description": "MCP server for FreshBooks — manage invoices, clients, estimates, and payments via natural language",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -895,7 +895,7 @@
         "repo": "chrischall/kiaaccess-mcp"
       },
       "description": "Vehicle status, location, odometer, EV charge state, and confirmation-gated door, climate, and charging commands",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": {
         "name": "Chris Chall"
       },
@@ -919,7 +919,7 @@
         "repo": "chrischall/maxpreps-mcp"
       },
       "description": "MCP server for MaxPreps — read any US high school's team schedules, scores, records, rosters, stat leaders and athlete careers. Reads the site's public server-rendered data; no account or API key.",
-      "version": "1.1.3",
+      "version": "1.1.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -968,7 +968,7 @@
         "repo": "chrischall/musicbrainz-mcp"
       },
       "description": "MCP server for MusicBrainz — search/browse music metadata, fetch cover art, and submit tags, ratings, and collections",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1039,7 +1039,7 @@
         "repo": "chrischall/myhotlunchbox-mcp"
       },
       "description": "MCP server for My Hot Lunchbox — school lunch calendar, ordering, and payments. Signs in server-side with the parent account credentials.",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1186,7 +1186,7 @@
         "repo": "chrischall/pickuppatrol-mcp"
       },
       "description": "Read and change your children's school dismissal plans in PickUp Patrol — defaults, day-by-day changes and school cutoff times — via MCP",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": {
         "name": "Chris Chall"
       },
@@ -1270,7 +1270,7 @@
         "repo": "chrischall/schoolpass-mcp"
       },
       "description": "Students, arrival/dismissal calendar, pending pickup changes, authorized drivers, dismissal locations, and school info for a parent account",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "author": {
         "name": "Chris Chall"
       },
@@ -1339,7 +1339,7 @@
         "repo": "chrischall/simplepractice-mcp"
       },
       "description": "Read a SimplePractice Client Portal — appointments, invoices and superbills, documents to sign, and practice announcements. Signs in with the portal's own passwordless emailed link; requests go straight to the portal's JSON:API over your own session.",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Chall",
         "url": "https://github.com/chrischall"
@@ -1363,7 +1363,7 @@
         "repo": "chrischall/simplisafe-mcp"
       },
       "description": "MCP server for SimpliSafe — check system state and sensors, review events, arm/disarm, control smart locks",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1589,7 +1589,7 @@
         "repo": "chrischall/untappd-mcp"
       },
       "description": "MCP server for Untappd — search beers/breweries/venues, read profiles/check-ins/wishlists, and post check-ins, toasts, and comments",
-      "version": "2.2.1",
+      "version": "2.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1613,7 +1613,7 @@
         "repo": "chrischall/viator-mcp"
       },
       "description": "Search Viator tours, activities and experiences — products, pricing, availability schedules, attractions, and destinations via the Viator Partner API",
-      "version": "2.1.3",
+      "version": "2.1.4",
       "author": {
         "name": "Chris Hall"
       },

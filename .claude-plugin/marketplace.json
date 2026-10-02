@@ -330,7 +330,7 @@
         "repo": "chrischall/easytable-mcp"
       },
       "description": "MCP server for easyTable — restaurant availability plus create/modify/cancel bookings",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -525,7 +525,7 @@
         "path": "packages/gogcli-mcp"
       },
       "description": "Google Sheets (and more) for Claude via gogcli — read, write, and manage spreadsheets",
-      "version": "4.5.2",
+      "version": "4.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -553,7 +553,7 @@
         "path": "packages/gogcli-mcp-classroom"
       },
       "description": "Extended Google Classroom for Claude via gogcli — auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)",
-      "version": "4.5.2",
+      "version": "4.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -583,7 +583,7 @@
         "path": "packages/gogcli-mcp-docs"
       },
       "description": "Extended Google Docs for Claude via gogcli — auth + full Docs and comments support",
-      "version": "4.5.2",
+      "version": "4.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -610,7 +610,7 @@
         "path": "packages/gogcli-mcp-drive"
       },
       "description": "Extended Google Drive for Claude via gogcli — auth + full Drive support (upload, download, permissions, comments, shared drives)",
-      "version": "4.5.2",
+      "version": "4.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -639,7 +639,7 @@
         "path": "packages/gogcli-mcp-sheets"
       },
       "description": "Extended Google Sheets for Claude via gogcli — auth + full Sheets support",
-      "version": "4.5.2",
+      "version": "4.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -667,7 +667,7 @@
         "path": "packages/gogcli-mcp-slides"
       },
       "description": "Extended Google Slides for Claude via gogcli — auth + full Slides support (create, edit, export, templates, markdown)",
-      "version": "4.5.2",
+      "version": "4.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -718,7 +718,7 @@
         "repo": "chrischall/hemnet-mcp"
       },
       "description": "Hemnet.se real estate tools for Claude — search, sold prices, listings, and market stats via MCP",
-      "version": "1.1.6",
+      "version": "1.1.7",
       "author": {
         "name": "Chris Chall"
       },
@@ -1713,7 +1713,7 @@
         "repo": "chrischall/zola-mcp"
       },
       "description": "Zola wedding planning tools for Claude — vendors, budget, guests, seating, events, registry, inquiries, and more via MCP",
-      "version": "2.1.5",
+      "version": "2.1.6",
       "author": {
         "name": "Chris Chall"
       },

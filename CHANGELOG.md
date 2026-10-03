@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.0.7](https://github.com/chrischall/mcp-marketplace/compare/v1.0.6...v1.0.7) (2026-10-03)
+
+
+### Bug Fixes
+
+* refresh the plugin catalog from the source repos ([#40](https://github.com/chrischall/mcp-marketplace/issues/40)) ([805bd84](https://github.com/chrischall/mcp-marketplace/commit/805bd84f39d2b3e99f491e0ec9b6075d35a542d6))
+* refresh the plugin catalog from the source repos ([#42](https://github.com/chrischall/mcp-marketplace/issues/42)) ([36403f1](https://github.com/chrischall/mcp-marketplace/commit/36403f115b35bba5490ed6ed4f2532856cb555e2))
+* refresh the plugin catalog from the source repos ([#44](https://github.com/chrischall/mcp-marketplace/issues/44)) ([b094ee3](https://github.com/chrischall/mcp-marketplace/commit/b094ee35658daaaa4f5258a10c7ad6cf5e8b9823))
+* refresh the plugin catalog from the source repos ([#45](https://github.com/chrischall/mcp-marketplace/issues/45)) ([f422891](https://github.com/chrischall/mcp-marketplace/commit/f422891a536bb23c3a6657063780f220791aeb15))
+* refresh the plugin catalog from the source repos ([#46](https://github.com/chrischall/mcp-marketplace/issues/46)) ([9e4086c](https://github.com/chrischall/mcp-marketplace/commit/9e4086c8ae617e858576dfec6a2899f727783a83))
+* refresh the plugin catalog from the source repos ([#47](https://github.com/chrischall/mcp-marketplace/issues/47)) ([0e18ed0](https://github.com/chrischall/mcp-marketplace/commit/0e18ed07f3d29b298ff0b5a649cfc282a1448baa))
+
+
+### Documentation
+
+* drop restated release and merge policy now covered by the fleet-policy pointer ([#48](https://github.com/chrischall/mcp-marketplace/issues/48)) ([3c92a23](https://github.com/chrischall/mcp-marketplace/commit/3c92a236f098d8858c7312f48125ae0947b137e9))
+
 ## [1.0.6](https://github.com/chrischall/mcp-marketplace/compare/v1.0.5...v1.0.6) (2026-09-25)
 
 

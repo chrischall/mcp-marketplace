@@ -39,16 +39,9 @@ referenced by its own GitHub source repo. It contains no application code.
 ## Releases
 
 release-please (`release-type: simple`) drives versioning from Conventional
-Commit messages on `main`:
-
-- `fix:` → patch, `feat:` → minor, `feat!:` / `BREAKING CHANGE` → major.
-- It opens a release PR that bumps `metadata.version` +
-  `.release-please-manifest.json` and updates `CHANGELOG.md`. Merging that PR
-  tags `v<version>` and cuts a GitHub Release.
-- `ready-to-merge` arms auto-merge (lands when `ci-gated` is green); only
-  auto-review adds it, on a `pass`/`warn` verdict. Never add it yourself — not
-  to override a `fail`, not to ship a `warn` early. Adding `release-ready` to a
-  release-please PR starts CI/review; the pipeline arms it on a pass.
+Commit messages on `main`. It opens a release PR that bumps `metadata.version` +
+`.release-please-manifest.json` and updates `CHANGELOG.md`. Merging that PR
+tags `v<version>` and cuts a GitHub Release.
 
 ## CI
 

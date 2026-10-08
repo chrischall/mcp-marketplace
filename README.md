@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (70)
+## Servers (71)
 
 ### data
 
@@ -54,6 +54,7 @@ claude plugin install zillow-mcp@chrischall
 ### productivity
 
 - **[accessoticketing](https://github.com/chrischall/accessoticketing-mcp)** (`accessoticketing`) — Reads accesso Passport mobile-ticket links (the URL a venue emails after a purchase) and returns the order, its admissions, the barcode images and Google Wallet save links. The emailed link is the only credential; no account sign-in is involved.
+- **[Amazon Alexa](https://github.com/chrischall/alexa-mcp)** (`alexa-mcp`) — MCP server for Amazon Alexa — Echo devices, announcements, routines, smart home, shopping/to-do lists and alarms
 - **[AllTrails](https://github.com/chrischall/alltrails-mcp)** (`alltrails`) — Unofficial AllTrails tools for Claude — search trails, get details, reviews, photos, and saved lists via MCP
 - **[AlphaPortal](https://github.com/chrischall/alphaportal-mcp)** (`alphaportal-mcp`) — MCP server for AlphaPortal school-bus transportation — students, stops, live bus location, and notifications via natural language
 - **[Angi](https://github.com/chrischall/angi-mcp)** (`angi-mcp`) — MCP server for Angi — find home-service pros, read ratings and reviews

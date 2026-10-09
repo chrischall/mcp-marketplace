@@ -141,6 +141,31 @@ class Collect(unittest.TestCase):
         (got,) = regen.collect(src)
         self.assertEqual(got["source"], {"source": "github", "repo": "chrischall/x-mcp"})
 
+    def test_empty_repo_is_skipped_without_reading_it(self):
+        # chrischall/fleet-audit#1053: a repo with no commits 409s the trees API.
+        read = []
+
+        class Spy(FakeSource):
+            def manifest_paths(self, r):
+                read.append(r)
+                return super().manifest_paths(r)
+        empty = dict(repo("new-mcp"), isEmpty=True)
+        src = Spy([empty, repo("x-mcp")], {("x-mcp", ".claude-plugin/marketplace.json"): manifest("x")})
+        self.assertEqual([p["name"] for p in regen.collect(src)], ["x"])
+        self.assertEqual(read, ["x-mcp"])
+
+    def test_one_unreadable_repo_does_not_abort_the_rest(self):
+        class Flaky(FakeSource):
+            def manifest_paths(self, r):
+                if r == "broken-mcp":
+                    raise SystemExit("gh api repos/chrischall/broken-mcp/git/trees/HEAD failed: 409")
+                return super().manifest_paths(r)
+        src = Flaky([repo("broken-mcp"), repo("x-mcp")],
+                    {("x-mcp", ".claude-plugin/marketplace.json"): manifest("x")})
+        failed = set()
+        self.assertEqual([p["name"] for p in regen.collect(src, failed=failed)], ["x"])
+        self.assertEqual(failed, {"broken-mcp"})
+
     def test_private_allowlist_ships_empty(self):
         self.assertEqual(regen.PRIVATE_ALLOWLIST, set())
 
@@ -187,6 +212,32 @@ class Removals(unittest.TestCase):
         self.assertEqual([p["name"] for p in got["plugins"]], ["x"])
 
 
+class FailedRepos(unittest.TestCase):
+    run_main = Removals.run_main
+
+    class Flaky(FakeSource):
+        def manifest_paths(self, r):
+            if r == "broken-mcp":
+                raise SystemExit("gh api ... failed: 409 Git Repository is empty")
+            return super().manifest_paths(r)
+
+    def source(self):
+        return self.Flaky([repo("broken-mcp"), repo("x-mcp")],
+                          {("x-mcp", ".claude-plugin/marketplace.json"): manifest("x")})
+
+    def test_unreadable_unlisted_repo_only_warns(self):
+        got = self.run_main(["x"], self.source())
+        self.assertEqual([p["name"] for p in got["plugins"]], ["x"])
+
+    def test_unreadable_repo_of_a_listed_plugin_fails_the_run(self):
+        listed = {"name": "b", "source": {"source": "github", "repo": "chrischall/broken-mcp"}}
+        for argv in ([], ["--allow-removal", "b"]):
+            with self.subTest(argv=argv):
+                with self.assertRaises(SystemExit) as cm:
+                    self.run_main(["x", listed], self.source(), argv)
+                self.assertIn("broken-mcp", str(cm.exception))
+
+
 class GitHubSource(unittest.TestCase):
     def make(self, responses):
         calls = []
@@ -205,6 +256,7 @@ class GitHubSource(unittest.TestCase):
         self.assertEqual(calls[0][:3], ["repo", "list", "chrischall"])
         json_fields = calls[0][calls[0].index("--json") + 1].split(",")
         self.assertIn("visibility", json_fields)
+        self.assertIn("isEmpty", json_fields)
 
     def test_manifest_paths_come_from_the_default_branch_tree(self):
         tree = {"truncated": False, "tree": [

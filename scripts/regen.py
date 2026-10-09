@@ -15,7 +15,8 @@ source for monorepo subpackages). metadata.version is carried from
 A plugin that was in the catalog but is no longer found fails the run; pass
 `--allow-removal <name>` (repeatable) when the removal is intended. A plugin
 whose repo is now private is dropped without failing: that exclusion is the
-point, not an accident.
+point, not an accident. Empty repos are skipped; a repo that can't be read is
+warned about and skipped, but fails the run if it backs an already-listed plugin.
 
 Needs an authenticated `gh` CLI. Run: python3 scripts/regen.py
 """
@@ -24,6 +25,7 @@ import json
 import os
 import posixpath
 import subprocess
+import sys
 
 OWNER = "chrischall"
 SELF = "mcp-marketplace"  # don't scan the catalog repo itself
@@ -56,7 +58,7 @@ class GitHub:
 
     def list_repos(self):
         return json.loads(self.run(["repo", "list", self.owner, "--limit", "1000",
-                                    "--json", "name,isFork,isArchived,visibility"]))
+                                    "--json", "name,isFork,isArchived,isEmpty,visibility"]))
 
     def manifest_paths(self, repo):
         tree = json.loads(self.run(["api", f"repos/{self.owner}/{repo}/git/trees/HEAD?recursive=1"]))
@@ -115,13 +117,19 @@ def is_listable(r):
     return r.get("visibility") == "PUBLIC" or r["name"] in PRIVATE_ALLOWLIST
 
 
-def collect(source, skipped_private=None):
+def collect(source, skipped_private=None, failed=None):
     """Plugin entries from every listable repo. Names of repos skipped for being
-    private are added to `skipped_private` (a set) when given."""
+    private are added to `skipped_private` (a set) when given.
+
+    Empty repos are skipped (the trees API 409s on them). A repo whose
+    manifests can't be fetched is warned about and skipped rather than
+    aborting every later repo (chrischall/fleet-audit#1053); its name is added
+    to `failed` (a set) when given, so main() can refuse to drop a plugin that
+    is already listed."""
     plugins = []
     for r in sorted(source.list_repos(), key=lambda r: r["name"]):
         name = r["name"]
-        if name == SELF or r.get("isArchived"):
+        if name == SELF or r.get("isArchived") or r.get("isEmpty"):
             continue
         if r.get("isFork") and name not in INCLUDE_FORKS:
             continue
@@ -129,11 +137,17 @@ def collect(source, skipped_private=None):
             if skipped_private is not None:
                 skipped_private.add(name)
             continue
-        for path in source.manifest_paths(name):
-            if "node_modules/" in path:
-                continue
+        try:
+            found = [(path, source.read(name, path)) for path in source.manifest_paths(name)
+                     if "node_modules/" not in path]
+        except (SystemExit, Exception) as e:  # _gh raises SystemExit
+            print(f"warning: skipping {OWNER}/{name}: {e}", file=sys.stderr)
+            if failed is not None:
+                failed.add(name)
+            continue
+        for path, data in found:
             rel = os.path.dirname(os.path.dirname(path)) or "."
-            plugins.extend(plugin_entries(name, rel, source.read(name, path)))
+            plugins.extend(plugin_entries(name, rel, data))
     return plugins
 
 
@@ -206,8 +220,13 @@ def main(argv=None, source=None, root=ROOT):
     except FileNotFoundError:
         previous = {}
 
-    private = set()
-    plugins = collect(source or GitHub(), private)
+    private, failed = set(), set()
+    plugins = collect(source or GitHub(), private, failed)
+    unreadable = sorted(n for n, r in previous.items() if r in failed)
+    if unreadable:
+        raise SystemExit(
+            f"Could not read the source repo of these listed plugins: {', '.join(unreadable)} "
+            f"(repos: {', '.join(sorted(failed))}). Not regenerating with them missing.")
     now_private = {n for n, r in previous.items() if r in private}
     for n in sorted(now_private):
         print(f"Dropping {n}: its source repo is not public")

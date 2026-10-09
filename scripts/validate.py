@@ -7,6 +7,10 @@ source repo from GitHub, which a PR's CI token can't do across private repos):
   - top-level $schema / name / metadata.version present
   - every plugin has name + description + a valid source (github+repo, or
     git-subdir+url+path for monorepo subpackages)
+  - every source, homepage and repository points at a chrischall GitHub repo,
+    and a git-subdir path is a clean relative path (a catalog entry decides
+    what code users clone and run, so this is enforced here, not left to
+    review — chrischall/fleet-audit#553)
   - plugin names are unique
   - metadata.version equals .release-please-manifest.json (release-please owns
     it; a regen that resets it is caught here)
@@ -14,10 +18,22 @@ Exit non-zero with a readable report on any failure.
 """
 import json
 import pathlib
+import re
 import sys
 
 MANIFEST = pathlib.Path(".claude-plugin/marketplace.json")
 RELEASE_MANIFEST = pathlib.Path(".release-please-manifest.json")
+OWNER = "chrischall"
+_NAME = r"[A-Za-z0-9._-]*[A-Za-z0-9_-][A-Za-z0-9._-]*"  # a repo name, not "." / ".."
+REPO_RE = re.compile(rf"{OWNER}/{_NAME}")
+URL_RE = re.compile(rf"https://github\.com/{OWNER}/{_NAME}\.git")
+LINK_RE = re.compile(rf"https://github\.com/{OWNER}/{_NAME}(/[^\s]*)?")
+
+
+def _clean_rel_path(path):
+    parts = path.split("/")
+    return (not path.startswith("/") and "\\" not in path
+            and all(part not in ("", ".", "..") for part in parts))
 
 
 def validate(root=pathlib.Path(".")) -> list:
@@ -64,14 +80,28 @@ def validate(root=pathlib.Path(".")) -> list:
         src = p.get("source") or {}
         kind = src.get("source")
         if kind == "github" and src.get("repo"):
-            pass  # root-level plugin in its own repo
+            # root-level plugin in its own repo
+            if not REPO_RE.fullmatch(str(src["repo"])):
+                errs.append(f"plugin {where}: source.repo {src['repo']!r} "
+                            f"is not a {OWNER}/<repo> repo")
         elif kind == "git-subdir" and src.get("url") and src.get("path"):
-            pass  # monorepo subpackage
+            # monorepo subpackage
+            if not URL_RE.fullmatch(str(src["url"])):
+                errs.append(f"plugin {where}: source.url {src['url']!r} is not "
+                            f"https://github.com/{OWNER}/<repo>.git")
+            if not _clean_rel_path(str(src["path"])):
+                errs.append(f"plugin {where}: source.path {src['path']!r} must be "
+                            f"a relative path without '.' or '..' segments")
         else:
             errs.append(
                 f"plugin {where}: source must be {{source: github, repo: ...}} "
                 f"or {{source: git-subdir, url: ..., path: ...}}"
             )
+        for field in ("homepage", "repository"):
+            link = p.get(field)
+            if link is not None and not LINK_RE.fullmatch(str(link)):
+                errs.append(f"plugin {where}: {field} {link!r} is not under "
+                            f"https://github.com/{OWNER}/")
 
     dups = sorted({n for n in names if n and names.count(n) > 1})
     if dups:

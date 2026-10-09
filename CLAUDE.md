@@ -15,7 +15,9 @@ referenced by its own GitHub source repo. It contains no application code.
   `gh`, never from local clones), and rewrites each `source` to a GitHub source
   (`git-subdir` for monorepo subpackages like `gogcli-mcp`). A listed plugin
   that disappears fails the run unless passed as `--allow-removal <name>`
-  (one whose repo went private is dropped without failing). To
+  (one whose repo went private is dropped without failing). Empty repos are
+  skipped; a repo whose manifests can't be fetched is warned about and skipped,
+  but fails the run when it backs an already-listed plugin. To
   change the catalog, merge the change in the source repo, then run
   `python3 scripts/regen.py` and commit the result — or let `regen.yml`
   (daily + `workflow_dispatch`, via `RELEASE_PAT`) open the
@@ -48,7 +50,8 @@ tags `v<version>` and cuts a GitHub Release.
 `ci.yml` (job `ci`, check context `ci-gated`, the required status check in the
 branch ruleset) runs the script tests (`python3 -m unittest discover -s tests -t .`),
 `scripts/validate.py` (which also fails if `metadata.version` drifts from
-`.release-please-manifest.json`) and the formatting check. No build,
+`.release-please-manifest.json`, or if any `source`, `homepage` or
+`repository` points anywhere but a `chrischall` GitHub repo) and the formatting check. No build,
 no Node — Python only.
 
 <!-- pr-workflow:v3 -->

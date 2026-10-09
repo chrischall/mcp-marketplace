@@ -7,22 +7,25 @@ when listed in PRIVATE_ALLOWLIST, and otherwise never even read), and every mani
 DEFAULT BRANCH on GitHub. Nothing is read from local clones: they may sit on an
 unmerged branch, and a repo that isn't cloned would silently drop out.
 
-Each repo's own .claude-plugin/marketplace.json plugin entry is authoritative;
-this script only rewrites `source` to point at the GitHub repo (a `git-subdir`
+Each repo's own .claude-plugin/marketplace.json plugin entries (all of them)
+are authoritative; this script only rewrites `source` to point at the GitHub repo (a `git-subdir`
 source for monorepo subpackages). metadata.version is carried from
 .release-please-manifest.json, which release-please owns.
 
 A plugin that was in the catalog but is no longer found fails the run; pass
 `--allow-removal <name>` (repeatable) when the removal is intended. A plugin
 whose repo is now private is dropped without failing: that exclusion is the
-point, not an accident.
+point, not an accident. Empty repos are skipped; a repo that can't be read is
+warned about and skipped, but fails the run if it backs an already-listed plugin.
 
 Needs an authenticated `gh` CLI. Run: python3 scripts/regen.py
 """
 import argparse
 import json
 import os
+import posixpath
 import subprocess
+import sys
 
 OWNER = "chrischall"
 SELF = "mcp-marketplace"  # don't scan the catalog repo itself
@@ -55,7 +58,7 @@ class GitHub:
 
     def list_repos(self):
         return json.loads(self.run(["repo", "list", self.owner, "--limit", "1000",
-                                    "--json", "name,isFork,isArchived,visibility"]))
+                                    "--json", "name,isFork,isArchived,isEmpty,visibility"]))
 
     def manifest_paths(self, repo):
         tree = json.loads(self.run(["api", f"repos/{self.owner}/{repo}/git/trees/HEAD?recursive=1"]))
@@ -71,22 +74,42 @@ class GitHub:
                                     f"repos/{self.owner}/{repo}/contents/{path}"]))
 
 
-def plugin_entry(repo, rel, data, owner=OWNER):
-    entry = (data.get("plugins") or [None])[0]
-    if not entry:
-        return None
-    entry = dict(entry)
-    base = f"https://github.com/{owner}/{repo}"
-    if rel == ".":
-        entry["source"] = {"source": "github", "repo": f"{owner}/{repo}"}
-    else:
-        # Monorepo subpackage: `github` sources have no `path` field
-        # (Claude Code silently ignores it and looks at the repo root),
-        # so subdirectory plugins must use the `git-subdir` source type.
-        entry["source"] = {"source": "git-subdir", "url": f"{base}.git", "path": rel}
-    entry.setdefault("homepage", base if rel == "." else f"{base}/tree/main/{rel}")
-    entry.setdefault("repository", base)
-    return entry
+def plugin_entries(repo, rel, data, owner=OWNER):
+    """Catalog entries for EVERY plugin in a source manifest (not just the
+    first — chrischall/fleet-audit#551). `rel` is the manifest's package dir.
+
+    A plugin's own `source` path ("./" or e.g. "./skills") is resolved against
+    that dir and rewritten to a GitHub source; a non-path source maps to the
+    dir itself. A path that escapes the repo is an error, not a silent drop.
+    """
+    entries = []
+    for entry in data.get("plugins") or []:
+        if not entry:
+            continue
+        entry = dict(entry)
+        where = f"{owner}/{repo}:{rel}/{MANIFEST} plugin {entry.get('name')!r}"
+        rel_src = entry.get("source")
+        if not isinstance(rel_src, str):
+            # Non-path sources (e.g. ioffice-mcp's {"source": "npm", ...}) are
+            # replaced by the manifest's own package dir, as before.
+            rel_src = "./"
+        if rel_src.startswith("/"):
+            raise SystemExit(f"{where}: source {rel_src!r} must be a path relative to the manifest")
+        sub = posixpath.normpath(posixpath.join(rel, rel_src))
+        if sub == ".." or sub.startswith("../"):
+            raise SystemExit(f"{where}: source {rel_src!r} points outside the repo")
+        base = f"https://github.com/{owner}/{repo}"
+        if sub == ".":
+            entry["source"] = {"source": "github", "repo": f"{owner}/{repo}"}
+        else:
+            # Monorepo subpackage: `github` sources have no `path` field
+            # (Claude Code silently ignores it and looks at the repo root),
+            # so subdirectory plugins must use the `git-subdir` source type.
+            entry["source"] = {"source": "git-subdir", "url": f"{base}.git", "path": sub}
+        entry.setdefault("homepage", base if sub == "." else f"{base}/tree/main/{sub}")
+        entry.setdefault("repository", base)
+        entries.append(entry)
+    return entries
 
 
 def is_listable(r):
@@ -94,13 +117,19 @@ def is_listable(r):
     return r.get("visibility") == "PUBLIC" or r["name"] in PRIVATE_ALLOWLIST
 
 
-def collect(source, skipped_private=None):
+def collect(source, skipped_private=None, failed=None):
     """Plugin entries from every listable repo. Names of repos skipped for being
-    private are added to `skipped_private` (a set) when given."""
+    private are added to `skipped_private` (a set) when given.
+
+    Empty repos are skipped (the trees API 409s on them). A repo whose
+    manifests can't be fetched is warned about and skipped rather than
+    aborting every later repo (chrischall/fleet-audit#1053); its name is added
+    to `failed` (a set) when given, so main() can refuse to drop a plugin that
+    is already listed."""
     plugins = []
     for r in sorted(source.list_repos(), key=lambda r: r["name"]):
         name = r["name"]
-        if name == SELF or r.get("isArchived"):
+        if name == SELF or r.get("isArchived") or r.get("isEmpty"):
             continue
         if r.get("isFork") and name not in INCLUDE_FORKS:
             continue
@@ -108,13 +137,17 @@ def collect(source, skipped_private=None):
             if skipped_private is not None:
                 skipped_private.add(name)
             continue
-        for path in source.manifest_paths(name):
-            if "node_modules/" in path:
-                continue
+        try:
+            found = [(path, source.read(name, path)) for path in source.manifest_paths(name)
+                     if "node_modules/" not in path]
+        except (SystemExit, Exception) as e:  # _gh raises SystemExit
+            print(f"warning: skipping {OWNER}/{name}: {e}", file=sys.stderr)
+            if failed is not None:
+                failed.add(name)
+            continue
+        for path, data in found:
             rel = os.path.dirname(os.path.dirname(path)) or "."
-            entry = plugin_entry(name, rel, source.read(name, path))
-            if entry:
-                plugins.append(entry)
+            plugins.extend(plugin_entries(name, rel, data))
     return plugins
 
 
@@ -187,8 +220,13 @@ def main(argv=None, source=None, root=ROOT):
     except FileNotFoundError:
         previous = {}
 
-    private = set()
-    plugins = collect(source or GitHub(), private)
+    private, failed = set(), set()
+    plugins = collect(source or GitHub(), private, failed)
+    unreadable = sorted(n for n, r in previous.items() if r in failed)
+    if unreadable:
+        raise SystemExit(
+            f"Could not read the source repo of these listed plugins: {', '.join(unreadable)} "
+            f"(repos: {', '.join(sorted(failed))}). Not regenerating with them missing.")
     now_private = {n for n, r in previous.items() if r in private}
     for n in sorted(now_private):
         print(f"Dropping {n}: its source repo is not public")

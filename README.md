@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (71)
+## Servers (72)
 
 ### data
 
@@ -64,6 +64,7 @@ claude plugin install zillow-mcp@chrischall
 - **[Booli](https://github.com/chrischall/booli-mcp)** (`booli`) — Booli.se real estate tools for Claude — search listings, sold prices, areas, and market stats via MCP
 - **[Canvas LMS](https://github.com/chrischall/canvas-parent-mcp)** (`canvas-parent-mcp`) — Canvas LMS (Instructure) MCP server for Claude — student/observer access via natural language
 - **[Compass](https://github.com/chrischall/compass-mcp)** (`compass-mcp`) — MCP server for Compass — search listings, get property details, market reports, saved homes
+- **[SAP Concur](https://github.com/chrischall/concur-mcp)** (`concur`) — Unofficial SAP Concur tools for Claude — expense reports, expenses, receipts and trips via MCP
 - **[Crown Town Compost](https://github.com/chrischall/crowntowncompost-mcp)** (`crowntowncompost-mcp`) — MCP server for the Crown Town Compost customer portal — view pickups and invoices, skip a service, and report a missed collection. Authenticates server-side with a session cookie you already hold, or your own portal username and password.
 - **[easyTable](https://github.com/chrischall/easytable-mcp)** (`easytable-mcp`) — MCP server for easyTable — restaurant availability plus create/modify/cancel bookings
 - **[Etix](https://github.com/chrischall/etix-mcp)** (`etix-mcp`) — MCP server for Etix — search events, venues & performers and fetch event details

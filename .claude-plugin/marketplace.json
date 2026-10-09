@@ -299,6 +299,30 @@
       "category": "productivity"
     },
     {
+      "name": "concur",
+      "displayName": "SAP Concur",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/concur-mcp"
+      },
+      "description": "Unofficial SAP Concur tools for Claude — expense reports, expenses, receipts and trips via MCP",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Chall"
+      },
+      "homepage": "https://github.com/chrischall/concur-mcp",
+      "repository": "https://github.com/chrischall/concur-mcp",
+      "license": "MIT",
+      "keywords": [
+        "concur",
+        "sap-concur",
+        "expenses",
+        "mcp",
+        "travel"
+      ],
+      "category": "productivity"
+    },
+    {
       "name": "creditkarma-mcp",
       "displayName": "Credit Karma",
       "source": {

@@ -48,7 +48,8 @@ tags `v<version>` and cuts a GitHub Release.
 `ci.yml` (job `ci`, check context `ci-gated`, the required status check in the
 branch ruleset) runs the script tests (`python3 -m unittest discover -s tests -t .`),
 `scripts/validate.py` (which also fails if `metadata.version` drifts from
-`.release-please-manifest.json`) and the formatting check. No build,
+`.release-please-manifest.json`, or if any `source`, `homepage` or
+`repository` points anywhere but a `chrischall` GitHub repo) and the formatting check. No build,
 no Node — Python only.
 
 <!-- pr-workflow:v3 -->

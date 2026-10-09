@@ -7,8 +7,8 @@ when listed in PRIVATE_ALLOWLIST, and otherwise never even read), and every mani
 DEFAULT BRANCH on GitHub. Nothing is read from local clones: they may sit on an
 unmerged branch, and a repo that isn't cloned would silently drop out.
 
-Each repo's own .claude-plugin/marketplace.json plugin entry is authoritative;
-this script only rewrites `source` to point at the GitHub repo (a `git-subdir`
+Each repo's own .claude-plugin/marketplace.json plugin entries (all of them)
+are authoritative; this script only rewrites `source` to point at the GitHub repo (a `git-subdir`
 source for monorepo subpackages). metadata.version is carried from
 .release-please-manifest.json, which release-please owns.
 
@@ -22,6 +22,7 @@ Needs an authenticated `gh` CLI. Run: python3 scripts/regen.py
 import argparse
 import json
 import os
+import posixpath
 import subprocess
 
 OWNER = "chrischall"
@@ -71,22 +72,42 @@ class GitHub:
                                     f"repos/{self.owner}/{repo}/contents/{path}"]))
 
 
-def plugin_entry(repo, rel, data, owner=OWNER):
-    entry = (data.get("plugins") or [None])[0]
-    if not entry:
-        return None
-    entry = dict(entry)
-    base = f"https://github.com/{owner}/{repo}"
-    if rel == ".":
-        entry["source"] = {"source": "github", "repo": f"{owner}/{repo}"}
-    else:
-        # Monorepo subpackage: `github` sources have no `path` field
-        # (Claude Code silently ignores it and looks at the repo root),
-        # so subdirectory plugins must use the `git-subdir` source type.
-        entry["source"] = {"source": "git-subdir", "url": f"{base}.git", "path": rel}
-    entry.setdefault("homepage", base if rel == "." else f"{base}/tree/main/{rel}")
-    entry.setdefault("repository", base)
-    return entry
+def plugin_entries(repo, rel, data, owner=OWNER):
+    """Catalog entries for EVERY plugin in a source manifest (not just the
+    first — chrischall/fleet-audit#551). `rel` is the manifest's package dir.
+
+    A plugin's own `source` path ("./" or e.g. "./skills") is resolved against
+    that dir and rewritten to a GitHub source; a non-path source maps to the
+    dir itself. A path that escapes the repo is an error, not a silent drop.
+    """
+    entries = []
+    for entry in data.get("plugins") or []:
+        if not entry:
+            continue
+        entry = dict(entry)
+        where = f"{owner}/{repo}:{rel}/{MANIFEST} plugin {entry.get('name')!r}"
+        rel_src = entry.get("source")
+        if not isinstance(rel_src, str):
+            # Non-path sources (e.g. ioffice-mcp's {"source": "npm", ...}) are
+            # replaced by the manifest's own package dir, as before.
+            rel_src = "./"
+        if rel_src.startswith("/"):
+            raise SystemExit(f"{where}: source {rel_src!r} must be a path relative to the manifest")
+        sub = posixpath.normpath(posixpath.join(rel, rel_src))
+        if sub == ".." or sub.startswith("../"):
+            raise SystemExit(f"{where}: source {rel_src!r} points outside the repo")
+        base = f"https://github.com/{owner}/{repo}"
+        if sub == ".":
+            entry["source"] = {"source": "github", "repo": f"{owner}/{repo}"}
+        else:
+            # Monorepo subpackage: `github` sources have no `path` field
+            # (Claude Code silently ignores it and looks at the repo root),
+            # so subdirectory plugins must use the `git-subdir` source type.
+            entry["source"] = {"source": "git-subdir", "url": f"{base}.git", "path": sub}
+        entry.setdefault("homepage", base if sub == "." else f"{base}/tree/main/{sub}")
+        entry.setdefault("repository", base)
+        entries.append(entry)
+    return entries
 
 
 def is_listable(r):
@@ -112,9 +133,7 @@ def collect(source, skipped_private=None):
             if "node_modules/" in path:
                 continue
             rel = os.path.dirname(os.path.dirname(path)) or "."
-            entry = plugin_entry(name, rel, source.read(name, path))
-            if entry:
-                plugins.append(entry)
+            plugins.extend(plugin_entries(name, rel, source.read(name, path)))
     return plugins
 
 

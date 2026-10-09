@@ -103,6 +103,44 @@ class Collect(unittest.TestCase):
         finally:
             regen.PRIVATE_ALLOWLIST = orig
 
+    def test_every_plugin_in_a_manifest_is_kept_not_just_the_first(self):
+        # chrischall/fleet-audit#551: a second plugin (e.g. a skills companion)
+        # must not silently drop out of the catalog.
+        two = {"name": "x", "plugins": [
+            {"name": "x", "description": "mcp", "source": "./"},
+            {"name": "x-skills", "description": "skills", "source": "./skills"}]}
+        src = FakeSource([repo("x-mcp")], {("x-mcp", ".claude-plugin/marketplace.json"): two})
+        got = {p["name"]: p for p in regen.collect(src)}
+        self.assertEqual(sorted(got), ["x", "x-skills"])
+        self.assertEqual(got["x"]["source"], {"source": "github", "repo": "chrischall/x-mcp"})
+        self.assertEqual(got["x-skills"]["source"], {
+            "source": "git-subdir", "url": "https://github.com/chrischall/x-mcp.git",
+            "path": "skills"})
+        self.assertEqual(got["x-skills"]["homepage"],
+                         "https://github.com/chrischall/x-mcp/tree/main/skills")
+
+    def test_relative_plugin_source_resolves_inside_a_monorepo_package(self):
+        data = {"name": "m", "plugins": [{"name": "m", "description": "d", "source": "./"}]}
+        src = FakeSource([repo("mono")], {("mono", "packages/m/.claude-plugin/marketplace.json"): data})
+        (got,) = regen.collect(src)
+        self.assertEqual(got["source"]["path"], "packages/m")
+
+    def test_plugin_source_escaping_the_repo_is_an_error_not_a_silent_drop(self):
+        for source in ("../elsewhere", "/abs"):
+            with self.subTest(source=source):
+                data = {"name": "x", "plugins": [{"name": "x", "description": "d", "source": source}]}
+                src = FakeSource([repo("x-mcp")], {("x-mcp", ".claude-plugin/marketplace.json"): data})
+                with self.assertRaises(SystemExit):
+                    regen.collect(src)
+
+    def test_non_path_plugin_source_maps_to_the_manifest_dir(self):
+        # ioffice-mcp / tempo-api-mcp ship {"source": "npm", ...}.
+        data = {"name": "x", "plugins": [{"name": "x", "description": "d",
+                                          "source": {"source": "npm", "package": "x"}}]}
+        src = FakeSource([repo("x-mcp")], {("x-mcp", ".claude-plugin/marketplace.json"): data})
+        (got,) = regen.collect(src)
+        self.assertEqual(got["source"], {"source": "github", "repo": "chrischall/x-mcp"})
+
     def test_private_allowlist_ships_empty(self):
         self.assertEqual(regen.PRIVATE_ALLOWLIST, set())
 

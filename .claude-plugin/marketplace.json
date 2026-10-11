@@ -742,7 +742,7 @@
         "repo": "chrischall/groupon-mcp"
       },
       "description": "MCP server for Groupon — search and browse local, goods, and travel deals via natural language",
-      "version": "1.1.6",
+      "version": "1.1.7",
       "author": {
         "name": "Chris Hall"
       },
@@ -837,7 +837,7 @@
         "repo": "chrischall/housecallpro-mcp"
       },
       "description": "Reads the customer-side Housecall Pro portal over plain HTTPS using the per-document retrieval link your contractor sent you.",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "author": {
         "name": "Chris Chall"
       },
@@ -989,7 +989,7 @@
         "source": "github",
         "repo": "chrischall/microsoft-teams-mcp"
       },
-      "description": "MCP server for Microsoft Teams — read your chats, teams, channels, and their currently open messages, via your signed-in browser session",
+      "description": "MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session",
       "version": "0.3.0",
       "author": {
         "name": "Chris Hall"
@@ -1062,7 +1062,7 @@
         "repo": "chrischall/myersparkathleticzone-mcp"
       },
       "description": "MCP server for Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links. Reads the public site's server-rendered pages; no account or credentials required.",
-      "version": "1.1.7",
+      "version": "1.1.8",
       "author": {
         "name": "Chris Hall"
       },
@@ -1109,8 +1109,8 @@
         "source": "github",
         "repo": "chrischall/office-outlook-mcp"
       },
-      "description": "MCP server for Outlook / Microsoft 365 — read mail, folders, calendar, contacts and tasks, and send mail with confirmation",
-      "version": "0.4.1",
+      "description": "MCP server for Outlook / Microsoft 365 — triage unread mail, reply, answer meeting invites and schedule meetings, plus folders, calendar, contacts and tasks, with confirmation before anything is sent",
+      "version": "0.5.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1258,7 +1258,7 @@
         "repo": "chrischall/redfin-mcp"
       },
       "description": "MCP server for Redfin — search listings, get property details, market reports, saved homes",
-      "version": "1.2.3",
+      "version": "1.2.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -1364,7 +1364,7 @@
         "repo": "chrischall/signupgenius-mcp"
       },
       "description": "SignUpGenius MCP server for Claude — sign-ups, slot reports, and groups via natural language. Free or Pro accounts.",
-      "version": "2.1.9",
+      "version": "2.1.10",
       "author": {
         "name": "Chris Hall"
       },
@@ -1433,7 +1433,7 @@
         "repo": "chrischall/sixflags-mcp"
       },
       "description": "Six Flags tools for Claude — live wait times, park hours, shows, and day planning for Carowinds and the whole chain",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "author": {
         "name": "Chris Chall"
       },
@@ -1480,7 +1480,7 @@
         "repo": "chrischall/skylight-mcp"
       },
       "description": "Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1610,7 +1610,7 @@
         "repo": "chrischall/tripadvisor-mcp"
       },
       "description": "TripAdvisor travel data via the Terra API — search hotels, restaurants, and attractions, with details, photos, and reviews",
-      "version": "1.1.8",
+      "version": "1.1.9",
       "author": {
         "name": "Chris Hall"
       },
@@ -1735,7 +1735,7 @@
         "repo": "chrischall/zillow-mcp"
       },
       "description": "MCP server for Zillow — search listings, get property details, Zestimate history, saved searches & homes, market reports",
-      "version": "1.2.2",
+      "version": "1.2.3",
       "author": {
         "name": "Chris Hall"
       },

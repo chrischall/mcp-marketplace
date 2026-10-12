@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (72)
+## Servers (73)
 
 ### data
 
@@ -29,6 +29,10 @@ claude plugin install zillow-mcp@chrischall
 - **[Credit Karma](https://github.com/chrischall/creditkarma-mcp)** (`creditkarma-mcp`) — MCP server for Credit Karma — sync and query your transactions, spending, and accounts via natural language
 - **[FreshBooks](https://github.com/chrischall/freshbooks-mcp)** (`freshbooks-mcp`) — MCP server for FreshBooks — manage invoices, clients, estimates, and payments via natural language
 - **[Splitwise](https://github.com/chrischall/splitwise-mcp)** (`splitwise-mcp`) — MCP server for Splitwise — manage expenses, groups, and friends via natural language
+
+### home-automation
+
+- **[iAqualink](https://github.com/chrischall/iaqualink-mcp)** (`iaqualink-mcp`) — MCP server for iAqualink pool equipment — read pool/spa temperatures and equipment state, and switch pumps, heaters, lights and aux circuits with confirmation
 
 ### lifestyle
 

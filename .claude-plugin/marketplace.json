@@ -330,7 +330,7 @@
         "repo": "chrischall/creditkarma-mcp"
       },
       "description": "MCP server for Credit Karma — sync and query your transactions, spending, and accounts via natural language",
-      "version": "3.3.2",
+      "version": "3.3.3",
       "author": {
         "name": "Chris Hall"
       },
@@ -521,7 +521,7 @@
         "repo": "chrischall/gemini-mcp"
       },
       "description": "Generate and edit images with Google Gemini image models (Nano Banana / Nano Banana Pro) via natural language prompts",
-      "version": "2.3.4",
+      "version": "2.4.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -883,7 +883,7 @@
         "repo": "chrischall/infinitecampus-mcp"
       },
       "description": "Infinite Campus (Campus Parent) MCP server for Claude — grades, attendance, assignments, messages, and documents via natural language",
-      "version": "3.1.9",
+      "version": "3.2.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1014,7 +1014,7 @@
         "repo": "chrischall/microsoft-teams-mcp"
       },
       "description": "MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session",
-      "version": "0.5.1",
+      "version": "0.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1134,7 +1134,7 @@
         "repo": "chrischall/office-outlook-mcp"
       },
       "description": "MCP server for Outlook / Microsoft 365 — triage unread mail, reply, answer meeting invites and schedule meetings, plus folders, calendar, contacts and tasks, with confirmation before anything is sent",
-      "version": "0.5.2",
+      "version": "0.6.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1528,7 +1528,7 @@
         "repo": "chrischall/splitwise-mcp"
       },
       "description": "MCP server for Splitwise — manage expenses, groups, and friends via natural language",
-      "version": "3.3.1",
+      "version": "3.4.0",
       "author": {
         "name": "Chris Hall"
       },

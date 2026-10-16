@@ -24,6 +24,7 @@ import argparse
 import json
 import os
 import posixpath
+import re
 import subprocess
 import sys
 
@@ -60,13 +61,19 @@ class GitHub:
         return json.loads(self.run(["repo", "list", self.owner, "--limit", "1000",
                                     "--json", "name,isFork,isArchived,isEmpty,visibility"]))
 
+    def blob_paths(self, repo):
+        """Every tracked file on the default branch (cached per repo)."""
+        cache = self.__dict__.setdefault("_blobs", {})
+        if repo not in cache:
+            tree = json.loads(self.run(["api", f"repos/{self.owner}/{repo}/git/trees/HEAD?recursive=1"]))
+            if tree.get("truncated"):
+                raise SystemExit(f"{self.owner}/{repo}: git tree listing truncated; can't find every manifest")
+            cache[repo] = {e["path"] for e in tree.get("tree", []) if e.get("type") == "blob"}
+        return cache[repo]
+
     def manifest_paths(self, repo):
-        tree = json.loads(self.run(["api", f"repos/{self.owner}/{repo}/git/trees/HEAD?recursive=1"]))
-        if tree.get("truncated"):
-            raise SystemExit(f"{self.owner}/{repo}: git tree listing truncated; can't find every manifest")
-        return sorted(e["path"] for e in tree.get("tree", [])
-                      if e.get("type") == "blob"
-                      and (e["path"] == MANIFEST or e["path"].endswith("/" + MANIFEST)))
+        return sorted(p for p in self.blob_paths(repo)
+                      if p == MANIFEST or p.endswith("/" + MANIFEST))
 
     def read(self, repo, path):
         # No ?ref= — the contents API defaults to the repo's default branch.
@@ -112,12 +119,52 @@ def plugin_entries(repo, rel, data, owner=OWNER):
     return entries
 
 
+PLUGIN_ROOT_RE = re.compile(r"\$\{CLAUDE_PLUGIN_ROOT\}/([^\s\"']+)")
+
+
+def untracked_launch_paths(source, repo, rel):
+    """`${CLAUDE_PLUGIN_ROOT}/<path>` files a plugin's MCP config launches that
+    the repo does not track (chrischall/fleet-audit#1195).
+
+    A git-source install clones the repo and runs no build, so an entry point
+    under a gitignored dist/ is simply absent and the server dies at startup.
+    The catalog cannot repair it — an entry's own `mcpServers` does not
+    override the plugin's, even with `strict: false` — so this only reports.
+    Best-effort: an unreadable plugin.json or MCP config is not flagged.
+    """
+    blob_paths = getattr(source, "blob_paths", None)
+    if not callable(blob_paths):
+        return []
+    pre = "" if rel == "." else rel + "/"
+    try:
+        manifest = source.read(repo, pre + ".claude-plugin/plugin.json")
+        servers = manifest.get("mcpServers") if isinstance(manifest, dict) else None
+        if isinstance(servers, str):
+            cfg = source.read(repo, posixpath.normpath(pre + servers))
+            servers = cfg.get("mcpServers", cfg) if isinstance(cfg, dict) else None
+        if not isinstance(servers, dict):
+            return []
+        tracked = blob_paths(repo)
+    except (SystemExit, Exception):  # _gh raises SystemExit
+        return []
+    missing = []
+    for server in servers.values():
+        if not isinstance(server, dict):
+            continue
+        words = [server.get("command") or ""] + [a for a in server.get("args") or [] if isinstance(a, str)]
+        for word in words:
+            for path in PLUGIN_ROOT_RE.findall(word):
+                if posixpath.normpath(pre + path) not in tracked and path not in missing:
+                    missing.append(path)
+    return missing
+
+
 def is_listable(r):
     """Public repos only (a missing visibility counts as private), unless allowlisted."""
     return r.get("visibility") == "PUBLIC" or r["name"] in PRIVATE_ALLOWLIST
 
 
-def collect(source, skipped_private=None, failed=None):
+def collect(source, skipped_private=None, failed=None, broken_launch=None):
     """Plugin entries from every listable repo. Names of repos skipped for being
     private are added to `skipped_private` (a set) when given.
 
@@ -125,7 +172,11 @@ def collect(source, skipped_private=None, failed=None):
     manifests can't be fetched is warned about and skipped rather than
     aborting every later repo (chrischall/fleet-audit#1053); its name is added
     to `failed` (a set) when given, so main() can refuse to drop a plugin that
-    is already listed."""
+    is already listed.
+
+    A plugin whose MCP config launches an untracked `${CLAUDE_PLUGIN_ROOT}`
+    file is still listed, with a warning, and recorded in `broken_launch`
+    ({plugin name: [paths]}) when given — see untracked_launch_paths()."""
     plugins = []
     for r in sorted(source.list_repos(), key=lambda r: r["name"]):
         name = r["name"]
@@ -147,7 +198,16 @@ def collect(source, skipped_private=None, failed=None):
             continue
         for path, data in found:
             rel = os.path.dirname(os.path.dirname(path)) or "."
-            plugins.extend(plugin_entries(name, rel, data))
+            entries = plugin_entries(name, rel, data)
+            missing = untracked_launch_paths(source, name, rel)
+            if missing:
+                for e in entries:
+                    print(f"warning: plugin {e.get('name')!r} ({OWNER}/{name}) launches "
+                          f"{', '.join(missing)}, which the repo does not track; a "
+                          f"git-source install will fail to start it", file=sys.stderr)
+                    if broken_launch is not None:
+                        broken_launch[e.get("name")] = missing
+            plugins.extend(entries)
     return plugins
 
 

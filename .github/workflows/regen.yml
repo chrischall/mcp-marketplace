@@ -39,11 +39,11 @@ jobs:
       GH_TOKEN: ${{ secrets.RELEASE_PAT }}
       BRANCH: bot/regen-catalog
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           token: ${{ secrets.RELEASE_PAT }}
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: "3.12"
 

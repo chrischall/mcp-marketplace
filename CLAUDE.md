@@ -24,6 +24,14 @@ referenced by its own GitHub source repo. It contains no application code.
   `bot/regen-catalog` PR (`scripts/regen-pr.sh`; when `main` is already
   current it closes a stale open regen PR instead). regen also rewrites the README's `## Servers` list,
   and a test fails if the committed README and catalog disagree.
+- **A git-source install runs no build.** `claude plugin install <name>@chrischall`
+  clones the source repo, so a plugin MCP config launching
+  `${CLAUDE_PLUGIN_ROOT}/dist/...` from a repo that gitignores `dist/` installs
+  and then fails to connect (fleet-audit#1195, reproduced). The catalog cannot
+  fix it: an entry's own `mcpServers` does not override the plugin's, even with
+  `strict: false`. `regen.py` warns, per plugin, when the launched file is not
+  tracked; the fix belongs in the source repo (`npx -y <npm package>`, as
+  ofw-mcp does).
 - **Formatting is canonical** `json.dumps(..., indent=2)` + trailing newline.
   CI fails if `marketplace.json` doesn't match that exact formatting.
 - **Plugin `name`s must be unique** across the catalog.

@@ -65,7 +65,7 @@
         "repo": "chrischall/alltrails-mcp"
       },
       "description": "Unofficial AllTrails tools for Claude — search trails, get details, reviews, photos, and saved lists via MCP",
-      "version": "3.1.9",
+      "version": "3.1.10",
       "author": {
         "name": "Chris Chall"
       },
@@ -207,7 +207,7 @@
         "repo": "chrischall/artsonia-mcp"
       },
       "description": "MCP server for Artsonia — access student portfolios, post comments, and manage fans via natural language",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -230,7 +230,7 @@
         "repo": "chrischall/booli-mcp"
       },
       "description": "Booli.se real estate tools for Claude — search listings, sold prices, areas, and market stats via MCP",
-      "version": "2.1.9",
+      "version": "2.1.10",
       "author": {
         "name": "Chris Chall"
       },
@@ -306,7 +306,7 @@
         "repo": "chrischall/concur-mcp"
       },
       "description": "Unofficial SAP Concur tools for Claude — expense reports, expenses, receipts and trips via MCP",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "author": {
         "name": "Chris Chall"
       },
@@ -354,7 +354,7 @@
         "repo": "chrischall/crowntowncompost-mcp"
       },
       "description": "MCP server for the Crown Town Compost customer portal — view pickups and invoices, skip a service, and report a missed collection. Authenticates server-side with a session cookie you already hold, or your own portal username and password.",
-      "version": "1.1.6",
+      "version": "1.1.7",
       "author": {
         "name": "Chris Hall"
       },
@@ -377,7 +377,7 @@
         "repo": "chrischall/easytable-mcp"
       },
       "description": "MCP server for easyTable — restaurant availability plus create/modify/cancel bookings",
-      "version": "1.2.7",
+      "version": "1.2.8",
       "author": {
         "name": "Chris Hall"
       },
@@ -425,7 +425,7 @@
         "repo": "chrischall/eventbrite-mcp"
       },
       "description": "MCP server for Eventbrite — tickets, orders, organizer data, and public event search. Account tools use a personal API token; discovery search routes through the user's signed-in eventbrite.com tab via ContextMint Bridge (the fetchproxy browser extension), reusing their authenticated session.",
-      "version": "1.1.9",
+      "version": "1.1.10",
       "author": {
         "name": "Chris Hall"
       },
@@ -547,7 +547,7 @@
         "repo": "chrischall/getyourguide-mcp"
       },
       "description": "GetYourGuide tours and activities for Claude — search, details, options, and reviews via MCP",
-      "version": "2.1.7",
+      "version": "2.1.8",
       "author": {
         "name": "Chris Chall"
       },
@@ -742,7 +742,7 @@
         "repo": "chrischall/groupon-mcp"
       },
       "description": "MCP server for Groupon — search and browse local, goods, and travel deals via natural language",
-      "version": "1.1.8",
+      "version": "1.1.9",
       "author": {
         "name": "Chris Hall"
       },
@@ -765,7 +765,7 @@
         "repo": "chrischall/hemnet-mcp"
       },
       "description": "Hemnet.se real estate tools for Claude — search, sold prices, listings, and market stats via MCP",
-      "version": "1.1.12",
+      "version": "1.1.13",
       "author": {
         "name": "Chris Chall"
       },
@@ -814,7 +814,7 @@
         "repo": "chrischall/honeybook-mcp"
       },
       "description": "HoneyBook client-portal MCP for Claude — view wedding-vendor contracts and invoices via MCP",
-      "version": "1.2.7",
+      "version": "1.2.8",
       "author": {
         "name": "Chris Chall"
       },
@@ -859,7 +859,7 @@
         "repo": "chrischall/iaqualink-mcp"
       },
       "description": "MCP server for iAqualink pool equipment — read pool/spa temperatures and equipment state, and switch pumps, heaters, lights and aux circuits with confirmation",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1014,7 +1014,7 @@
         "repo": "chrischall/microsoft-teams-mcp"
       },
       "description": "MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session",
-      "version": "0.6.1",
+      "version": "0.6.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1086,7 +1086,7 @@
         "repo": "chrischall/myersparkathleticzone-mcp"
       },
       "description": "MCP server for Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links. Reads the public site's server-rendered pages; no account or credentials required.",
-      "version": "1.1.9",
+      "version": "1.1.10",
       "author": {
         "name": "Chris Hall"
       },
@@ -1134,7 +1134,7 @@
         "repo": "chrischall/office-outlook-mcp"
       },
       "description": "MCP server for Outlook / Microsoft 365 — triage unread mail, reply, answer meeting invites and schedule meetings, plus folders, calendar, contacts and tasks, with confirmation before anything is sent",
-      "version": "0.6.1",
+      "version": "0.6.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1183,7 +1183,7 @@
         "repo": "chrischall/onehome-mcp"
       },
       "description": "MCP server for OneHome (CoreLogic) — search listings, get property details, photos, schools, saved searches",
-      "version": "1.1.9",
+      "version": "1.1.10",
       "author": {
         "name": "Chris Hall"
       },
@@ -1317,7 +1317,7 @@
         "repo": "chrischall/resy-mcp"
       },
       "description": "MCP server for Resy — search restaurants, book tables, manage reservations, favorites, and Priority Notify via natural language",
-      "version": "1.3.4",
+      "version": "1.3.5",
       "author": {
         "name": "Chris Hall"
       },
@@ -1457,7 +1457,7 @@
         "repo": "chrischall/sixflags-mcp"
       },
       "description": "Six Flags tools for Claude — live wait times, park hours, shows, and day planning for Carowinds and the whole chain",
-      "version": "2.1.9",
+      "version": "2.1.10",
       "author": {
         "name": "Chris Chall"
       },
@@ -1504,7 +1504,7 @@
         "repo": "chrischall/skylight-mcp"
       },
       "description": "Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.",
-      "version": "1.4.3",
+      "version": "1.4.5",
       "author": {
         "name": "Chris Hall"
       },
@@ -1634,7 +1634,7 @@
         "repo": "chrischall/tripadvisor-mcp"
       },
       "description": "TripAdvisor travel data via the Terra API — search hotels, restaurants, and attractions, with details, photos, and reviews",
-      "version": "1.1.10",
+      "version": "1.1.12",
       "author": {
         "name": "Chris Hall"
       },
@@ -1684,7 +1684,7 @@
         "repo": "chrischall/viator-mcp"
       },
       "description": "Search Viator tours, activities and experiences — products, pricing, availability schedules, attractions, and destinations via the Viator Partner API",
-      "version": "2.1.9",
+      "version": "2.1.10",
       "author": {
         "name": "Chris Hall"
       },
@@ -1735,7 +1735,7 @@
         "repo": "chrischall/workday-mcp"
       },
       "description": "Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session",
-      "version": "1.1.9",
+      "version": "1.1.10",
       "author": {
         "name": "Chris Hall"
       },

@@ -17,7 +17,7 @@
         "repo": "chrischall/accessoticketing-mcp"
       },
       "description": "Reads accesso Passport mobile-ticket links (the URL a venue emails after a purchase) and returns the order, its admissions, the barcode images and Google Wallet save links. The emailed link is the only credential; no account sign-in is involved.",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": {
         "name": "Claude Code (AI)",
         "url": "https://www.anthropic.com/claude"
@@ -1528,7 +1528,7 @@
         "repo": "chrischall/splitwise-mcp"
       },
       "description": "MCP server for Splitwise — manage expenses, groups, and friends via natural language",
-      "version": "3.4.1",
+      "version": "3.5.0",
       "author": {
         "name": "Chris Hall"
       },

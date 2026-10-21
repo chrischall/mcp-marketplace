@@ -89,7 +89,7 @@
         "repo": "chrischall/alphaportal-mcp"
       },
       "description": "MCP server for AlphaPortal school-bus transportation — students, stops, live bus location, and notifications via natural language",
-      "version": "1.2.4",
+      "version": "1.2.5",
       "author": {
         "name": "Chris Hall"
       },
@@ -163,7 +163,7 @@
         "repo": "chrischall/apple-icloud-mcp"
       },
       "description": "Apple Music playlists and library, iCloud Calendar, Contacts and Mail, Apple Maps, WeatherKit and iTunes search for Claude via MCP — runs anywhere, no Mac required. Unofficial; not affiliated with Apple.",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "author": {
         "name": "Chris Chall"
       },
@@ -230,7 +230,7 @@
         "repo": "chrischall/booli-mcp"
       },
       "description": "Booli.se real estate tools for Claude — search listings, sold prices, areas, and market stats via MCP",
-      "version": "2.1.10",
+      "version": "2.1.11",
       "author": {
         "name": "Chris Chall"
       },
@@ -306,7 +306,7 @@
         "repo": "chrischall/concur-mcp"
       },
       "description": "Unofficial SAP Concur tools for Claude — expense reports, expenses, receipts and trips via MCP",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "author": {
         "name": "Chris Chall"
       },
@@ -330,7 +330,7 @@
         "repo": "chrischall/creditkarma-mcp"
       },
       "description": "MCP server for Credit Karma — sync and query your transactions, spending, and accounts via natural language",
-      "version": "3.3.4",
+      "version": "3.3.5",
       "author": {
         "name": "Chris Hall"
       },
@@ -448,7 +448,7 @@
         "repo": "chrischall/evite-mcp"
       },
       "description": "Evite tools for Claude — list events, guest lists & RSVPs, RSVP, message guests, and create/edit events via MCP",
-      "version": "1.3.6",
+      "version": "1.3.7",
       "author": {
         "name": "Chris Chall"
       },
@@ -521,7 +521,7 @@
         "repo": "chrischall/gemini-mcp"
       },
       "description": "Generate and edit images with Google Gemini image models (Nano Banana / Nano Banana Pro) via natural language prompts",
-      "version": "2.4.1",
+      "version": "2.4.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -572,7 +572,7 @@
         "path": "packages/gogcli-mcp"
       },
       "description": "Google Sheets (and more) for Claude via gogcli — read, write, and manage spreadsheets",
-      "version": "4.8.1",
+      "version": "4.9.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -600,7 +600,7 @@
         "path": "packages/gogcli-mcp-classroom"
       },
       "description": "Extended Google Classroom for Claude via gogcli — auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)",
-      "version": "4.8.1",
+      "version": "4.9.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -630,7 +630,7 @@
         "path": "packages/gogcli-mcp-docs"
       },
       "description": "Extended Google Docs for Claude via gogcli — auth + full Docs and comments support",
-      "version": "4.8.1",
+      "version": "4.9.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -657,7 +657,7 @@
         "path": "packages/gogcli-mcp-drive"
       },
       "description": "Extended Google Drive for Claude via gogcli — auth + full Drive support (upload, download, permissions, comments, shared drives)",
-      "version": "4.8.1",
+      "version": "4.9.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -686,7 +686,7 @@
         "path": "packages/gogcli-mcp-sheets"
       },
       "description": "Extended Google Sheets for Claude via gogcli — auth + full Sheets support",
-      "version": "4.8.1",
+      "version": "4.9.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -714,7 +714,7 @@
         "path": "packages/gogcli-mcp-slides"
       },
       "description": "Extended Google Slides for Claude via gogcli — auth + full Slides support (create, edit, export, templates, markdown)",
-      "version": "4.8.1",
+      "version": "4.9.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -765,7 +765,7 @@
         "repo": "chrischall/hemnet-mcp"
       },
       "description": "Hemnet.se real estate tools for Claude — search, sold prices, listings, and market stats via MCP",
-      "version": "1.1.13",
+      "version": "1.1.14",
       "author": {
         "name": "Chris Chall"
       },
@@ -1014,7 +1014,7 @@
         "repo": "chrischall/microsoft-teams-mcp"
       },
       "description": "MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session",
-      "version": "0.6.2",
+      "version": "0.7.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1062,7 +1062,7 @@
         "repo": "chrischall/myatriumhealth-mcp"
       },
       "description": "Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the ContextMint Bridge extension.",
-      "version": "1.3.7",
+      "version": "1.3.8",
       "author": {
         "name": "Chris Hall"
       },
@@ -1110,7 +1110,7 @@
         "repo": "chrischall/myhotlunchbox-mcp"
       },
       "description": "MCP server for My Hot Lunchbox — school lunch calendar, ordering, and payments. Signs in server-side with the parent account credentials.",
-      "version": "1.2.7",
+      "version": "1.2.8",
       "author": {
         "name": "Chris Hall"
       },
@@ -1134,7 +1134,7 @@
         "repo": "chrischall/office-outlook-mcp"
       },
       "description": "MCP server for Outlook / Microsoft 365 — triage unread mail, reply, answer meeting invites and schedule meetings, plus folders, calendar, contacts and tasks, with confirmation before anything is sent",
-      "version": "0.6.2",
+      "version": "0.7.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1159,7 +1159,7 @@
         "repo": "chrischall/ofw-mcp"
       },
       "description": "OurFamilyWizard co-parenting tools for Claude — messages, calendar, expenses, and journal via MCP",
-      "version": "2.20.5",
+      "version": "2.20.6",
       "author": {
         "name": "Chris Chall"
       },
@@ -1305,7 +1305,7 @@
         "repo": "chrischall/remind-mcp"
       },
       "description": "Read Remind classes, chats and messages.",
-      "version": "1.2.7",
+      "version": "1.2.8",
       "homepage": "https://github.com/chrischall/remind-mcp",
       "repository": "https://github.com/chrischall/remind-mcp"
     },
@@ -1504,7 +1504,7 @@
         "repo": "chrischall/skylight-mcp"
       },
       "description": "Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.",
-      "version": "1.4.5",
+      "version": "1.4.6",
       "author": {
         "name": "Chris Hall"
       },
@@ -1528,7 +1528,7 @@
         "repo": "chrischall/splitwise-mcp"
       },
       "description": "MCP server for Splitwise — manage expenses, groups, and friends via natural language",
-      "version": "3.5.0",
+      "version": "3.5.1",
       "author": {
         "name": "Chris Hall"
       },

@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (73)
+## Servers (74)
 
 ### data
 
@@ -104,6 +104,7 @@ claude plugin install zillow-mcp@chrischall
 - **[Skylight](https://github.com/chrischall/skylight-mcp)** (`skylight-mcp`) — Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.
 - **[tempo-api-mcp](https://github.com/chrischall/tempo-api-mcp)** (`tempo-api-mcp`) — MCP server for Tempo — manage worklogs, plans, teams, accounts, and projects via natural language
 - **[Thumbtack](https://github.com/chrischall/thumbtack-mcp)** (`thumbtack`) — Unofficial Thumbtack tools for Claude — search local service pros, read profiles, ratings and reviews via MCP
+- **[Toast](https://github.com/chrischall/toasttab-mcp)** (`toasttab-mcp`) — Toast (toasttab.com) restaurants and menus for Claude — relays through a companion browser extension in your own browser.
 - **[Tock](https://github.com/chrischall/tock-mcp)** (`tock-mcp`) — Tock (exploretock.com) restaurant discovery for Claude — relays through a companion Chrome extension in your signed-in exploretock.com tab.
 - **[Vibo](https://github.com/chrischall/vibo-mcp)** (`vibo-mcp`) — MCP server for Vibo — browse & manage events, timeline, songs, the DJ song ideas/questions, guests, and exports to Spotify/Apple Music
 - **[Workday](https://github.com/chrischall/workday-mcp)** (`workday-mcp`) — Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session

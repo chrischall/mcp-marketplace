@@ -1602,6 +1602,31 @@
       "category": "productivity"
     },
     {
+      "name": "toasttab-mcp",
+      "displayName": "Toast",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/toasttab-mcp"
+      },
+      "description": "Toast (toasttab.com) restaurants and menus for Claude — relays through a companion browser extension in your own browser.",
+      "version": "0.0.0",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/toasttab-mcp",
+      "repository": "https://github.com/chrischall/toasttab-mcp",
+      "license": "MIT",
+      "keywords": [
+        "toast",
+        "toasttab",
+        "restaurants",
+        "menus",
+        "takeout",
+        "mcp"
+      ],
+      "category": "productivity"
+    },
+    {
       "name": "tock-mcp",
       "displayName": "Tock",
       "source": {
@@ -1660,7 +1685,7 @@
         "repo": "chrischall/untappd-mcp"
       },
       "description": "MCP server for Untappd — search beers/breweries/venues, read profiles/check-ins/wishlists, and post check-ins, toasts, and comments",
-      "version": "2.3.2",
+      "version": "2.4.0",
       "author": {
         "name": "Chris Hall"
       },

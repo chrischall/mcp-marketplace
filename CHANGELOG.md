@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.14](https://github.com/chrischall/mcp-marketplace/compare/v1.0.13...v1.0.14) (2026-10-24)
+
+
+### Bug Fixes
+
+* refresh the plugin catalog from the source repos ([#71](https://github.com/chrischall/mcp-marketplace/issues/71)) ([5e964e3](https://github.com/chrischall/mcp-marketplace/commit/5e964e35015dfc4418e3070833deac2d2e80c7af))
+* refresh the plugin catalog from the source repos ([#73](https://github.com/chrischall/mcp-marketplace/issues/73)) ([e4ec850](https://github.com/chrischall/mcp-marketplace/commit/e4ec850b7756fe38f56af653d2e785f248e163b3))
+* refresh the plugin catalog from the source repos ([#75](https://github.com/chrischall/mcp-marketplace/issues/75)) ([ca38aa2](https://github.com/chrischall/mcp-marketplace/commit/ca38aa2e12cc7792d6eca25972580ca6f367fee1))
+
 ## [1.0.13](https://github.com/chrischall/mcp-marketplace/compare/v1.0.12...v1.0.13) (2026-10-19)
 
 

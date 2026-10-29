@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (74)
+## Servers (75)
 
 ### data
 
@@ -85,6 +85,7 @@ claude plugin install zillow-mcp@chrischall
 - **[homes.com](https://github.com/chrischall/homes-mcp)** (`homes-mcp`) — MCP server for homes.com — search listings, get property details, photo galleries, compare properties
 - **[HoneyBook](https://github.com/chrischall/honeybook-mcp)** (`honeybook`) — HoneyBook client-portal MCP for Claude — view wedding-vendor contracts and invoices via MCP
 - **[Infinite Campus](https://github.com/chrischall/infinitecampus-mcp)** (`infinitecampus-mcp`) — Infinite Campus (Campus Parent) MCP server for Claude — grades, attendance, assignments, messages, and documents via natural language
+- **[InSync Patient Portal](https://github.com/chrischall/insync-mcp)** (`insync-mcp`) — Access an InSync Healthcare (Qualifacts) patient portal — read appointments, medications, allergies, messages, forms and balance, download files, and upload an insurance card (confirm-gated) — by signing in server-side or relaying through the user's signed-in browser tab.
 - **[ioffice-mcp](https://github.com/chrischall/ioffice-mcp)** (`ioffice-mcp`) — MCP server for iOffice — manage buildings, spaces, reservations, visitors, and more via natural language
 - **[Jobber Client Hub](https://github.com/chrischall/jobber-mcp)** (`jobber`) — Read the Jobber Client Hub your home-service providers share with you — appointments, invoices, quotes and requests — via MCP
 - **[Microsoft Teams](https://github.com/chrischall/microsoft-teams-mcp)** (`microsoft-teams-mcp`) — MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session

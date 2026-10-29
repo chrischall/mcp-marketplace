@@ -42,7 +42,7 @@
         "repo": "chrischall/alexa-mcp"
       },
       "description": "MCP server for Amazon Alexa — Echo devices, announcements, routines, smart home, shopping/to-do lists and alarms",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "author": {
         "name": "Chris Hall"
       },
@@ -65,7 +65,7 @@
         "repo": "chrischall/alltrails-mcp"
       },
       "description": "Unofficial AllTrails tools for Claude — search trails, get details, reviews, photos, and saved lists via MCP",
-      "version": "3.1.10",
+      "version": "3.1.11",
       "author": {
         "name": "Chris Chall"
       },
@@ -901,6 +901,30 @@
       "category": "productivity"
     },
     {
+      "name": "insync-mcp",
+      "displayName": "InSync Patient Portal",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/insync-mcp"
+      },
+      "description": "Access an InSync Healthcare (Qualifacts) patient portal — read appointments, medications, allergies, messages, forms and balance, download files, and upload an insurance card (confirm-gated) — by signing in server-side or relaying through the user's signed-in browser tab.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/insync-mcp",
+      "repository": "https://github.com/chrischall/insync-mcp",
+      "license": "MIT",
+      "keywords": [
+        "insync",
+        "qualifacts",
+        "patient-portal",
+        "behavioral-health",
+        "fetchproxy"
+      ],
+      "category": "productivity"
+    },
+    {
       "name": "ioffice-mcp",
       "source": {
         "source": "github",
@@ -1159,7 +1183,7 @@
         "repo": "chrischall/ofw-mcp"
       },
       "description": "OurFamilyWizard co-parenting tools for Claude — messages, calendar, expenses, and journal via MCP",
-      "version": "2.22.0",
+      "version": "2.23.0",
       "author": {
         "name": "Chris Chall"
       },

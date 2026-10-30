@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (75)
+## Servers (77)
 
 ### data
 
@@ -99,11 +99,13 @@ claude plugin install zillow-mcp@chrischall
 - **[PickUp Patrol](https://github.com/chrischall/pickuppatrol-mcp)** (`pickuppatrol`) — Read and change your children's school dismissal plans in PickUp Patrol — defaults, day-by-day changes and school cutoff times — via MCP
 - **[Redfin](https://github.com/chrischall/redfin-mcp)** (`redfin-mcp`) — MCP server for Redfin — search listings, get property details, market reports, saved homes
 - **[Resy](https://github.com/chrischall/resy-mcp)** (`resy-mcp`) — MCP server for Resy — search restaurants, book tables, manage reservations, favorites, and Priority Notify via natural language
+- **[RxLocal](https://github.com/chrischall/rxlocal-mcp)** (`rxlocal`) — RxLocal (PioneerRx/RedSail) pharmacy patient-portal MCP for Claude — prescriptions, refill options, pharmacy messages, and confirm-gated refill requests and messages
 - **[SignUpGenius](https://github.com/chrischall/signupgenius-mcp)** (`signupgenius-mcp`) — SignUpGenius MCP server for Claude — sign-ups, slot reports, and groups via natural language. Free or Pro accounts.
 - **[Six Flags](https://github.com/chrischall/sixflags-mcp)** (`sixflags`) — Six Flags tools for Claude — live wait times, park hours, shows, and day planning for Carowinds and the whole chain
 - **[Skills](https://github.com/chrischall/skill-mcp)** (`skill-mcp`) — Serves a directory of Agent Skills over MCP: list them, load their instructions, read their files, run their declared scripts
 - **[Skylight](https://github.com/chrischall/skylight-mcp)** (`skylight-mcp`) — Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.
 - **[tempo-api-mcp](https://github.com/chrischall/tempo-api-mcp)** (`tempo-api-mcp`) — MCP server for Tempo — manage worklogs, plans, teams, accounts, and projects via natural language
+- **[TherapyPortal](https://github.com/chrischall/therapyportal-mcp)** (`therapyportal-mcp`) — Use a TherapyNotes client portal (TherapyPortal) — upcoming appointments, paperwork, practice forms, balances, receipts and secure messages, document and receipt downloads, plus confirm-gated secure messages and document uploads. Signs in server-side or relays through the user's signed-in browser tab.
 - **[Thumbtack](https://github.com/chrischall/thumbtack-mcp)** (`thumbtack`) — Unofficial Thumbtack tools for Claude — search local service pros, read profiles, ratings and reviews via MCP
 - **[Toast](https://github.com/chrischall/toasttab-mcp)** (`toasttab-mcp`) — Toast (toasttab.com) restaurants and menus for Claude — relays through a companion browser extension in your own browser.
 - **[Tock](https://github.com/chrischall/tock-mcp)** (`tock-mcp`) — Tock (exploretock.com) restaurant discovery for Claude — relays through a companion Chrome extension in your signed-in exploretock.com tab.

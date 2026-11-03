@@ -984,6 +984,30 @@
       "category": "productivity"
     },
     {
+      "name": "juggle-mcp",
+      "displayName": "Juggle",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/juggle-mcp"
+      },
+      "description": "MCP server for Juggle (whyjuggle.com) — browse your sits and sitters, read messages, and post or manage sits via natural language",
+      "version": "0.1.1",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/juggle-mcp",
+      "repository": "https://github.com/chrischall/juggle-mcp",
+      "license": "MIT",
+      "keywords": [
+        "juggle",
+        "babysitting",
+        "petsitting",
+        "mcp",
+        "parent"
+      ],
+      "category": "productivity"
+    },
+    {
       "name": "kiaaccess",
       "source": {
         "source": "github",
@@ -1551,7 +1575,7 @@
         "repo": "chrischall/skylight-mcp"
       },
       "description": "Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.",
-      "version": "1.4.7",
+      "version": "1.4.8",
       "author": {
         "name": "Chris Hall"
       },
@@ -1757,7 +1781,7 @@
         "repo": "chrischall/untappd-mcp"
       },
       "description": "MCP server for Untappd — search beers/breweries/venues, read profiles/check-ins/wishlists, and post check-ins, toasts, and comments",
-      "version": "2.4.0",
+      "version": "2.5.2",
       "author": {
         "name": "Chris Hall"
       },
@@ -1849,6 +1873,30 @@
       "category": "productivity"
     },
     {
+      "name": "workvivo-mcp",
+      "displayName": "Workvivo",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/workvivo-mcp"
+      },
+      "description": "Read-only Workvivo for Claude — feed, news, events, people, spaces and search through your signed-in session",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Hall"
+      },
+      "homepage": "https://github.com/chrischall/workvivo-mcp",
+      "repository": "https://github.com/chrischall/workvivo-mcp",
+      "license": "MIT",
+      "keywords": [
+        "workvivo",
+        "intranet",
+        "news",
+        "directory",
+        "mcp"
+      ],
+      "category": "productivity"
+    },
+    {
       "name": "zillow-mcp",
       "displayName": "Zillow",
       "source": {
@@ -1881,7 +1929,7 @@
         "repo": "chrischall/zola-mcp"
       },
       "description": "Zola wedding planning tools for Claude — vendors, budget, guests, seating, events, registry, inquiries, and more via MCP",
-      "version": "2.1.11",
+      "version": "2.1.12",
       "author": {
         "name": "Chris Chall"
       },

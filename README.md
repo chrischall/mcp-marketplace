@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (77)
+## Servers (79)
 
 ### data
 
@@ -88,6 +88,7 @@ claude plugin install zillow-mcp@chrischall
 - **[InSync Patient Portal](https://github.com/chrischall/insync-mcp)** (`insync-mcp`) — Access an InSync Healthcare (Qualifacts) patient portal — read appointments, medications, allergies, messages, forms and balance, download files, and upload an insurance card (confirm-gated) — by signing in server-side or relaying through the user's signed-in browser tab.
 - **[ioffice-mcp](https://github.com/chrischall/ioffice-mcp)** (`ioffice-mcp`) — MCP server for iOffice — manage buildings, spaces, reservations, visitors, and more via natural language
 - **[Jobber Client Hub](https://github.com/chrischall/jobber-mcp)** (`jobber`) — Read the Jobber Client Hub your home-service providers share with you — appointments, invoices, quotes and requests — via MCP
+- **[Juggle](https://github.com/chrischall/juggle-mcp)** (`juggle-mcp`) — MCP server for Juggle (whyjuggle.com) — browse your sits and sitters, read messages, and post or manage sits via natural language
 - **[Microsoft Teams](https://github.com/chrischall/microsoft-teams-mcp)** (`microsoft-teams-mcp`) — MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session
 - **[MyAtriumHealth](https://github.com/chrischall/myatriumhealth-mcp)** (`myatriumhealth-mcp`) — Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the ContextMint Bridge extension.
 - **[My Hot Lunchbox](https://github.com/chrischall/myhotlunchbox-mcp)** (`myhotlunchbox-mcp`) — MCP server for My Hot Lunchbox — school lunch calendar, ordering, and payments. Signs in server-side with the parent account credentials.
@@ -111,6 +112,7 @@ claude plugin install zillow-mcp@chrischall
 - **[Tock](https://github.com/chrischall/tock-mcp)** (`tock-mcp`) — Tock (exploretock.com) restaurant discovery for Claude — relays through a companion Chrome extension in your signed-in exploretock.com tab.
 - **[Vibo](https://github.com/chrischall/vibo-mcp)** (`vibo-mcp`) — MCP server for Vibo — browse & manage events, timeline, songs, the DJ song ideas/questions, guests, and exports to Spotify/Apple Music
 - **[Workday](https://github.com/chrischall/workday-mcp)** (`workday-mcp`) — Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session
+- **[Workvivo](https://github.com/chrischall/workvivo-mcp)** (`workvivo-mcp`) — Read-only Workvivo for Claude — feed, news, events, people, spaces and search through your signed-in session
 - **[Zillow](https://github.com/chrischall/zillow-mcp)** (`zillow-mcp`) — MCP server for Zillow — search listings, get property details, Zestimate history, saved searches & homes, market reports
 - **[Zola](https://github.com/chrischall/zola-mcp)** (`zola`) — Zola wedding planning tools for Claude — vendors, budget, guests, seating, events, registry, inquiries, and more via MCP
 

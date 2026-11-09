@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (79)
+## Servers (80)
 
 ### data
 
@@ -79,6 +79,7 @@ claude plugin install zillow-mcp@chrischall
 - **[gogcli (Classroom)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-classroom)** (`gogcli-mcp-classroom`) — Extended Google Classroom for Claude via gogcli — auth + full Classroom support (courses, rosters, coursework, submissions, announcements, topics, invitations)
 - **[gogcli (Docs)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-docs)** (`gogcli-mcp-docs`) — Extended Google Docs for Claude via gogcli — auth + full Docs and comments support
 - **[gogcli (Drive)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-drive)** (`gogcli-mcp-drive`) — Extended Google Drive for Claude via gogcli — auth + full Drive support (upload, download, permissions, comments, shared drives)
+- **[gogcli (Maps)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-maps)** (`gogcli-mcp-maps`) — Trip mapping for Claude via gogcli — Google Places lookups (hours, website, phone, open-at checks) and trip stops as pins on a map
 - **[gogcli (Sheets)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-sheets)** (`gogcli-mcp-sheets`) — Extended Google Sheets for Claude via gogcli — auth + full Sheets support
 - **[gogcli (Slides)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-slides)** (`gogcli-mcp-slides`) — Extended Google Slides for Claude via gogcli — auth + full Slides support (create, edit, export, templates, markdown)
 - **[Hemnet](https://github.com/chrischall/hemnet-mcp)** (`hemnet`) — Hemnet.se real estate tools for Claude — search, sold prices, listings, and market stats via MCP

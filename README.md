@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (80)
+## Servers (81)
 
 ### data
 
@@ -65,6 +65,7 @@ claude plugin install zillow-mcp@chrischall
 - **[App Store Connect](https://github.com/chrischall/app-store-connect-mcp)** (`app-store-connect`) — App Store Connect tools for Claude — apps, TestFlight, customer reviews, sales/finance reports, and team users via MCP
 - **[Apple iCloud](https://github.com/chrischall/apple-icloud-mcp)** (`apple-icloud`) — Apple Music playlists and library, iCloud Calendar, Contacts and Mail, Apple Maps, WeatherKit and iTunes search for Claude via MCP — runs anywhere, no Mac required. Unofficial; not affiliated with Apple.
 - **[apple-mail](https://github.com/chrischall/apple-mail-mcp)** (`apple-mail`) — Manage Apple Mail through natural language - read, search, send, and organize emails
+- **[BAND](https://github.com/chrischall/band-mcp)** (`band`) — Unofficial BAND (band.us) tools for Claude — bands, posts, comments, events, members and chats via MCP
 - **[Booli](https://github.com/chrischall/booli-mcp)** (`booli`) — Booli.se real estate tools for Claude — search listings, sold prices, areas, and market stats via MCP
 - **[Canvas LMS](https://github.com/chrischall/canvas-parent-mcp)** (`canvas-parent-mcp`) — Canvas LMS (Instructure) MCP server for Claude — student/observer access via natural language
 - **[Compass](https://github.com/chrischall/compass-mcp)** (`compass-mcp`) — MCP server for Compass — search listings, get property details, market reports, saved homes

@@ -223,6 +223,30 @@
       "category": "education"
     },
     {
+      "name": "band",
+      "displayName": "BAND",
+      "source": {
+        "source": "github",
+        "repo": "chrischall/band-mcp"
+      },
+      "description": "Unofficial BAND (band.us) tools for Claude — bands, posts, comments, events, members and chats via MCP",
+      "version": "0.0.0",
+      "author": {
+        "name": "Chris Chall"
+      },
+      "homepage": "https://github.com/chrischall/band-mcp",
+      "repository": "https://github.com/chrischall/band-mcp",
+      "license": "MIT",
+      "keywords": [
+        "band",
+        "band-us",
+        "groups",
+        "mcp",
+        "calendar"
+      ],
+      "category": "productivity"
+    },
+    {
       "name": "booli",
       "displayName": "Booli",
       "source": {
@@ -1090,7 +1114,7 @@
         "repo": "chrischall/microsoft-teams-mcp"
       },
       "description": "MCP server for Microsoft Teams — read any chat or channel, your unread messages, and their attachments, and send messages and reactions (each confirmed first), via your signed-in browser session",
-      "version": "0.8.7",
+      "version": "0.11.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1210,7 +1234,7 @@
         "repo": "chrischall/office-outlook-mcp"
       },
       "description": "MCP server for Outlook / Microsoft 365 — triage unread mail, reply, answer meeting invites and schedule meetings, plus folders, calendar, contacts and tasks, with confirmation before anything is sent",
-      "version": "0.10.1",
+      "version": "0.11.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1235,7 +1259,7 @@
         "repo": "chrischall/ofw-mcp"
       },
       "description": "OurFamilyWizard co-parenting tools for Claude — messages, calendar, expenses, and journal via MCP",
-      "version": "2.28.0",
+      "version": "2.28.1",
       "author": {
         "name": "Chris Chall"
       },
@@ -1884,7 +1908,7 @@
         "repo": "chrischall/workday-mcp"
       },
       "description": "Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session",
-      "version": "1.4.0",
+      "version": "1.7.0",
       "author": {
         "name": "Chris Hall"
       },

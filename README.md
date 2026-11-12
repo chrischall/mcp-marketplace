@@ -12,7 +12,7 @@ claude plugin marketplace add chrischall/mcp-marketplace
 claude plugin install zillow-mcp@chrischall
 ```
 
-## Servers (81)
+## Servers (84)
 
 ### data
 
@@ -83,6 +83,8 @@ claude plugin install zillow-mcp@chrischall
 - **[gogcli (Maps)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-maps)** (`gogcli-mcp-maps`) — Trip mapping for Claude via gogcli — Google Places lookups (hours, website, phone, open-at checks) and trip stops as pins on a map
 - **[gogcli (Sheets)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-sheets)** (`gogcli-mcp-sheets`) — Extended Google Sheets for Claude via gogcli — auth + full Sheets support
 - **[gogcli (Slides)](https://github.com/chrischall/gogcli-mcp/tree/main/packages/gogcli-mcp-slides)** (`gogcli-mcp-slides`) — Extended Google Slides for Claude via gogcli — auth + full Slides support (create, edit, export, templates, markdown)
+- **[Harris Teeter](https://github.com/chrischall/harristeeter-mcp)** (`harristeeter-mcp`) — MCP server for Harris Teeter — groceries, cart, pickup times and checkout
+- **[HelloFresh](https://github.com/chrischall/hellofresh-mcp)** (`hellofresh`) — Unofficial HelloFresh (US) tools for Claude — subscription, weekly deliveries, menus, meal picks, skips and box sizes via MCP
 - **[Hemnet](https://github.com/chrischall/hemnet-mcp)** (`hemnet`) — Hemnet.se real estate tools for Claude — search, sold prices, listings, and market stats via MCP
 - **[homes.com](https://github.com/chrischall/homes-mcp)** (`homes-mcp`) — MCP server for homes.com — search listings, get property details, photo galleries, compare properties
 - **[HoneyBook](https://github.com/chrischall/honeybook-mcp)** (`honeybook`) — HoneyBook client-portal MCP for Claude — view wedding-vendor contracts and invoices via MCP
@@ -113,6 +115,7 @@ claude plugin install zillow-mcp@chrischall
 - **[Toast](https://github.com/chrischall/toasttab-mcp)** (`toasttab-mcp`) — Toast (toasttab.com) restaurants and menus for Claude — relays through a companion browser extension in your own browser.
 - **[Tock](https://github.com/chrischall/tock-mcp)** (`tock-mcp`) — Tock (exploretock.com) restaurant discovery for Claude — relays through a companion Chrome extension in your signed-in exploretock.com tab.
 - **[Vibo](https://github.com/chrischall/vibo-mcp)** (`vibo-mcp`) — MCP server for Vibo — browse & manage events, timeline, songs, the DJ song ideas/questions, guests, and exports to Spotify/Apple Music
+- **[war.app (Warzone)](https://github.com/chrischall/warapp-mcp)** (`warapp-mcp`) — war.app (Warzone) game advisor for Claude — games, maps, bonuses, routes, live board, picks and chat
 - **[Workday](https://github.com/chrischall/workday-mcp)** (`workday-mcp`) — Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session
 - **[Workvivo](https://github.com/chrischall/workvivo-mcp)** (`workvivo-mcp`) — Read-only Workvivo for Claude — feed, news, events, people, spaces and search through your signed-in session
 - **[Zillow](https://github.com/chrischall/zillow-mcp)** (`zillow-mcp`) — MCP server for Zillow — search listings, get property details, Zestimate history, saved searches & homes, market reports

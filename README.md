@@ -115,7 +115,7 @@ claude plugin install zillow-mcp@chrischall
 - **[Toast](https://github.com/chrischall/toasttab-mcp)** (`toasttab-mcp`) — Toast (toasttab.com) restaurants and menus for Claude — relays through a companion browser extension in your own browser.
 - **[Tock](https://github.com/chrischall/tock-mcp)** (`tock-mcp`) — Tock (exploretock.com) restaurant discovery for Claude — relays through a companion Chrome extension in your signed-in exploretock.com tab.
 - **[Vibo](https://github.com/chrischall/vibo-mcp)** (`vibo-mcp`) — MCP server for Vibo — browse & manage events, timeline, songs, the DJ song ideas/questions, guests, and exports to Spotify/Apple Music
-- **[war.app (Warzone)](https://github.com/chrischall/warapp-mcp)** (`warapp-mcp`) — war.app (Warzone) game advisor for Claude — games, maps, bonuses, routes, live board, picks and chat
+- **[war.app (Warzone)](https://github.com/chrischall/warapp-mcp)** (`warapp-mcp`) — war.app (Warzone) game advisor for Claude — games, maps, bonuses, routes, live board, picks, turns, cards and chat
 - **[Workday](https://github.com/chrischall/workday-mcp)** (`workday-mcp`) — Read-only MCP server for Workday — fetch tasks, pay, benefits and compensation through your signed-in session
 - **[Workvivo](https://github.com/chrischall/workvivo-mcp)** (`workvivo-mcp`) — Read-only Workvivo for Claude — feed, news, events, people, spaces and search through your signed-in session
 - **[Zillow](https://github.com/chrischall/zillow-mcp)** (`zillow-mcp`) — MCP server for Zillow — search listings, get property details, Zestimate history, saved searches & homes, market reports

@@ -1675,7 +1675,7 @@
         "repo": "chrischall/skylight-mcp"
       },
       "description": "Skylight Calendar MCP server for Claude — family events, chores, and rewards via natural language.",
-      "version": "1.6.2",
+      "version": "1.7.1",
       "author": {
         "name": "Chris Hall"
       },
@@ -1956,7 +1956,7 @@
         "repo": "chrischall/warapp-mcp"
       },
       "description": "war.app (Warzone) game advisor for Claude — games, maps, bonuses, routes, live board, picks, turns, cards and chat",
-      "version": "0.0.0",
+      "version": "0.2.0",
       "author": {
         "name": "Chris Hall"
       },

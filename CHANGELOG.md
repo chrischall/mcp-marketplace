@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.15](https://github.com/chrischall/mcp-marketplace/compare/v1.0.14...v1.0.15) (2026-11-21)
+
+
+### Bug Fixes
+
+* refresh the plugin catalog from the source repos ([#85](https://github.com/chrischall/mcp-marketplace/issues/85)) ([fd642d1](https://github.com/chrischall/mcp-marketplace/commit/fd642d140820db73ed57417c8818595b49d38853))
+* refresh the plugin catalog from the source repos ([#87](https://github.com/chrischall/mcp-marketplace/issues/87)) ([755bff1](https://github.com/chrischall/mcp-marketplace/commit/755bff194533eb409ea8a69f0711a35b5070ae85))
+* refresh the plugin catalog from the source repos ([#88](https://github.com/chrischall/mcp-marketplace/issues/88)) ([40747c0](https://github.com/chrischall/mcp-marketplace/commit/40747c0393aa6cf65995d4b23cfd109e839c03af))
+* refresh the plugin catalog from the source repos ([#89](https://github.com/chrischall/mcp-marketplace/issues/89)) ([4fe6646](https://github.com/chrischall/mcp-marketplace/commit/4fe66469f3ca751be12d6b8245db22cb40dcde73))
+* refresh the plugin catalog from the source repos ([#90](https://github.com/chrischall/mcp-marketplace/issues/90)) ([0cee8a6](https://github.com/chrischall/mcp-marketplace/commit/0cee8a645bc390b021970a67517b8470db1a9b76))
+* refresh the plugin catalog from the source repos ([#91](https://github.com/chrischall/mcp-marketplace/issues/91)) ([c457e0e](https://github.com/chrischall/mcp-marketplace/commit/c457e0efffc5867b2db75b858455c7abb724aa30))
+* refresh the plugin catalog from the source repos ([#92](https://github.com/chrischall/mcp-marketplace/issues/92)) ([0f1d1c5](https://github.com/chrischall/mcp-marketplace/commit/0f1d1c5f1a66cdb4bc0989af8d77236ab5215b40))
+* refresh the plugin catalog from the source repos ([#93](https://github.com/chrischall/mcp-marketplace/issues/93)) ([f6a77c7](https://github.com/chrischall/mcp-marketplace/commit/f6a77c7926bd091bd73efbe6a3da7e9cc87a21e0))
+
 ## [1.0.14](https://github.com/chrischall/mcp-marketplace/compare/v1.0.13...v1.0.14) (2026-11-05)
 
 

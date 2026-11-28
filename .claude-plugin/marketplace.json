@@ -1210,7 +1210,7 @@
         "repo": "chrischall/myatriumhealth-mcp"
       },
       "description": "Read MyAtriumHealth (Epic MyChart) records — test results, medications, allergies, immunizations, health issues, visits — by relaying requests through the user's signed-in browser tab via the ContextMint Bridge extension.",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "author": {
         "name": "Chris Hall"
       },
@@ -1956,7 +1956,7 @@
         "repo": "chrischall/warapp-mcp"
       },
       "description": "war.app (Warzone) game advisor for Claude — games, maps, bonuses, routes, live board, picks, turns, cards and chat",
-      "version": "0.11.0",
+      "version": "0.22.0",
       "author": {
         "name": "Chris Hall"
       },
